@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ANT | Agentic AI Freight System</title>
   <meta name="description" content="ANT Agentic AI Freight System สำหรับงาน Freight, Logistics, Document AI, Shipment และ Dashboard ของบริษัทไทย" />
+  <link rel="stylesheet" href="intro.css" />
+  <script defer src="intro.js"></script>
   <style>
     :root{
       --white:#ffffff;
@@ -223,6 +225,128 @@
   </style>
 </head>
 <body>
+  <div class="ants-intro-gate" data-ants-intro-gate data-intro-state="idle" aria-label="Ants AI Freight Work OS intro">
+    <div class="ants-intro-video-layer" aria-hidden="true">
+      <video class="ants-intro-video ants-intro-video-desktop" data-ants-intro-video autoplay muted playsinline preload="auto" poster="assets/intro-poster-desktop.jpg">
+        <source src="assets/intro-desktop.webm" type="video/webm">
+        <source src="assets/intro-desktop.mp4" type="video/mp4">
+      </video>
+      <video class="ants-intro-video ants-intro-video-mobile" data-ants-intro-video autoplay muted playsinline preload="auto" poster="assets/intro-poster-mobile.jpg">
+        <source src="assets/intro-mobile.webm" type="video/webm">
+        <source src="assets/intro-mobile.mp4" type="video/mp4">
+      </video>
+    </div>
+    <audio data-ants-intro-audio preload="none">
+      <source src="assets/ants-intro-sound.m4a" type="audio/mp4">
+      <source src="assets/ants-intro-sound.webm" type="audio/webm">
+    </audio>
+    <button class="ants-intro-sound" type="button" data-ants-intro-sound>เปิดเสียง</button>
+    <button class="ants-intro-skip" type="button" data-ants-intro-skip>Skip intro</button>
+    <div class="ants-intro-stage" aria-hidden="true">
+      <div class="ants-intro-aura"></div>
+      <div class="ants-intro-message">
+        <span>Scattered work</span>
+        <b>becomes intelligent control.</b>
+      </div>
+
+      <div class="ants-intro-chip-cloud">
+        <span class="ants-intro-chip" style="--x:-372px;--y:-154px;--r:-8deg;--delay:.05s">Invoice</span>
+        <span class="ants-intro-chip" style="--x:-194px;--y:-220px;--r:6deg;--delay:.13s">Packing List</span>
+        <span class="ants-intro-chip" style="--x:42px;--y:-238px;--r:-4deg;--delay:.21s">B/L</span>
+        <span class="ants-intro-chip" style="--x:282px;--y:-168px;--r:7deg;--delay:.29s">Email</span>
+        <span class="ants-intro-chip" style="--x:354px;--y:18px;--r:-5deg;--delay:.37s">Job Order</span>
+        <span class="ants-intro-chip" style="--x:218px;--y:172px;--r:5deg;--delay:.45s">Cost</span>
+        <span class="ants-intro-chip" style="--x:-34px;--y:228px;--r:-6deg;--delay:.53s">Customs</span>
+        <span class="ants-intro-chip" style="--x:-276px;--y:138px;--r:7deg;--delay:.61s">Billing</span>
+      </div>
+
+      <div class="ants-intro-core">
+        <div class="ants-intro-core-mark">AI</div>
+      </div>
+
+      <div class="ants-intro-network">
+        <svg class="ants-intro-lines" viewBox="0 0 1000 620" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="antsIntroLineGradient" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#5aa4ff" stop-opacity=".86" />
+              <stop offset="100%" stop-color="#9a72ff" stop-opacity=".7" />
+            </linearGradient>
+          </defs>
+          <path d="M500 310 C430 250 350 220 254 208" />
+          <path d="M500 310 C560 230 620 196 724 206" />
+          <path d="M500 310 C390 318 310 372 210 430" />
+          <path d="M500 310 C610 316 698 372 790 428" />
+          <path d="M500 310 C500 244 500 186 500 128" />
+          <path d="M500 310 C500 392 500 438 500 500" />
+        </svg>
+
+        <div class="ants-network-node" style="--nx:-292px;--ny:-104px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 15h15l3-5h-5l-2-4H8l-2 4H3z" />
+            <path d="M5 18c2 1 4 1 6 0s4-1 6 0" />
+          </svg>
+          <span>Ship</span>
+        </div>
+        <div class="ants-network-node" style="--nx:292px;--ny:-104px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 16l20-8-8 8 1 5-4-4-5 3 3-5z" />
+          </svg>
+          <span>Aircraft</span>
+        </div>
+        <div class="ants-network-node" style="--nx:-324px;--ny:122px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v9H3z" />
+            <path d="M14 10h4l3 3v3h-7z" />
+            <circle cx="7" cy="18" r="2" />
+            <circle cx="17" cy="18" r="2" />
+          </svg>
+          <span>Truck</span>
+        </div>
+        <div class="ants-network-node" style="--nx:324px;--ny:122px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6z" />
+            <path d="M8.7 12l2.1 2.1 4.5-5" />
+          </svg>
+          <span>Customs</span>
+        </div>
+        <div class="ants-network-node" style="--nx:0px;--ny:-190px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="5" width="16" height="14" rx="3" />
+            <path d="M7 9h10M7 13h5M15 13h2" />
+          </svg>
+          <span>Billing</span>
+        </div>
+        <div class="ants-network-node" style="--nx:0px;--ny:196px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="3" />
+            <path d="M8 15v-3M12 15V9M16 15v-5" />
+          </svg>
+          <span>Dashboard</span>
+        </div>
+      </div>
+
+      <div class="ants-intro-approval">
+        <div class="ants-approval-ring">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.5l4.2 4.2L19 7" />
+          </svg>
+        </div>
+        <div class="ants-approval-copy">
+          <b>Freight Ai Agent prepares</b>
+          <span>Human teams review and approve critical work.</span>
+        </div>
+      </div>
+
+      <div class="ants-intro-reveal">
+        <div class="ants-intro-logo-card">
+          <img src="assets/ant-logo-master.png" alt="" data-ants-intro-logo>
+          <p class="ants-intro-brand">Ants</p>
+          <p class="ants-intro-title">AI Freight Work OS</p>
+          <p class="ants-intro-subtitle">Freight Ai Agent is preparing your workspace.</p>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="page">
     <nav class="nav">
       <div class="nav-inner">
@@ -315,19 +439,16 @@
           <p class="small-text" data-i18n="download.lead">สแกน QR เพื่อเข้าใช้งาน APP, Web App และ ANT Care</p>
           <div class="download-grid">
             <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT iOS link">
-              <img class="qr-card-img" src="assets/qr-ios-ant.png" alt="iOS ANT QR">
+              <img class="qr-card-img" src="assets/qr-ios-card-official.png" alt="iOS App Store ANT QR">
             </a>
             <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT Android link">
-              <img class="qr-card-img" src="assets/qr-android-ant.png" alt="Android ANT QR">
+              <img class="qr-card-img" src="assets/qr-android-card-official.png" alt="Android Google Play ANT QR">
             </a>
             <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT Web App">
-              <img class="qr-card-img" src="assets/qr-web-ant.png" alt="PC Website QR">
+              <img class="qr-card-img" src="assets/qr-web-card-official.png" alt="PC Website ANT QR">
             </a>
-            <a class="qr-card" href="https://line.me/R/ti/p/@antnestai" target="_blank">
-              <span class="qr-badge care"><span>CHAT WITH</span><strong>ANT Care</strong></span>
-              <img class="qr-img" src="assets/qr-ant-care.png" alt="ANT Care QR">
-              <span class="qr-title">ANT Care</span>
-              <small>AI Assistant</small>
+            <a class="qr-card official" href="https://line.me/R/ti/p/@antnestai" target="_blank" aria-label="Open ANT Care LINE">
+              <img class="qr-card-img" src="assets/qr-ant-care-card-official.png" alt="LINE ANT Care QR">
             </a>
           </div>
         </div>

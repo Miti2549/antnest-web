@@ -1,0 +1,768 @@
+:root {
+  --ants-intro-white: #ffffff;
+  --ants-intro-ice: #f7fbff;
+  --ants-intro-blue: #3b82f6;
+  --ants-intro-blue-soft: #74b7ff;
+  --ants-intro-purple: #8b5cf6;
+  --ants-intro-ink: #0f1a3a;
+  --ants-intro-muted: #5c6b88;
+}
+
+.ants-intro-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: clamp(18px, 3vw, 42px);
+  background:
+    radial-gradient(circle at 78% 18%, rgba(139, 92, 246, .16), transparent 34%),
+    radial-gradient(circle at 18% 20%, rgba(59, 130, 246, .13), transparent 34%),
+    linear-gradient(135deg, #fff 0%, #fbfdff 48%, #eef7ff 80%, #f6efff 100%);
+  color: var(--ants-intro-ink);
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .55s ease, visibility .55s ease;
+}
+
+.ants-intro-gate[data-intro-state="active"] {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.ants-intro-gate[data-intro-state="closing"] {
+  opacity: 0;
+  visibility: visible;
+  pointer-events: none;
+}
+
+.ants-intro-gate::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59, 130, 246, .045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, .032) 1px, transparent 1px);
+  background-size: 78px 78px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, .3), rgba(0, 0, 0, .04));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ants-intro-gate::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 32%;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .68) 32%, rgba(255, 255, 255, .08) 66%, rgba(255, 255, 255, 0) 100%),
+    linear-gradient(180deg, transparent, rgba(255, 255, 255, .84));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ants-intro-video-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 76% 18%, rgba(139, 92, 246, .14), transparent 32%),
+    linear-gradient(135deg, #fff, #eef7ff 72%, #f6efff);
+}
+
+.ants-intro-video-layer::before,
+.ants-intro-video-layer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ants-intro-video-layer::before {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, .94) 0%, rgba(255, 255, 255, .7) 30%, rgba(255, 255, 255, .12) 62%, rgba(255, 255, 255, 0) 100%),
+    radial-gradient(circle at 22% 58%, rgba(255, 255, 255, .88), transparent 36%);
+}
+
+.ants-intro-video-layer::after {
+  z-index: 3;
+  background:
+    radial-gradient(circle at 70% 28%, rgba(139, 92, 246, .1), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .05) 44%, rgba(255, 255, 255, .62));
+}
+
+.ants-intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .94;
+  filter: saturate(1.04) contrast(1.02) brightness(1.02);
+  transform: scale(1.01);
+}
+
+.ants-intro-video-mobile {
+  display: none;
+}
+
+.ants-intro-skip,
+.ants-intro-sound {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  z-index: 6;
+  height: 38px;
+  border: 1px solid rgba(93, 119, 180, .18);
+  border-radius: 999px;
+  padding: 0 15px;
+  background: rgba(255, 255, 255, .74);
+  backdrop-filter: blur(18px);
+  color: #21345f;
+  font: 800 12px/1 -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+  cursor: pointer;
+  box-shadow: 0 12px 32px rgba(52, 88, 165, .08);
+}
+
+.ants-intro-skip {
+  right: max(18px, env(safe-area-inset-right));
+}
+
+.ants-intro-sound {
+  right: calc(max(18px, env(safe-area-inset-right)) + 104px);
+}
+
+.ants-intro-skip:hover,
+.ants-intro-sound:hover,
+.ants-intro-gate[data-sound-state="on"] .ants-intro-sound {
+  border-color: rgba(59, 130, 246, .38);
+  color: #1f5ee8;
+}
+
+.ants-intro-gate[data-sound-state="on"] .ants-intro-sound {
+  background: rgba(238, 246, 255, .86);
+}
+
+.ants-intro-stage {
+  position: relative;
+  z-index: 2;
+  width: min(1120px, 94vw);
+  min-height: min(650px, 82dvh);
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.ants-intro-message {
+  position: absolute;
+  left: clamp(8px, 2vw, 28px);
+  top: clamp(52px, 10vh, 86px);
+  display: grid;
+  gap: 4px;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: antsIntroMessage 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-intro-message span,
+.ants-intro-message b {
+  display: block;
+  font-family: -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+}
+
+.ants-intro-message span {
+  color: rgba(37, 78, 145, .82);
+  font-size: clamp(14px, 2vw, 20px);
+  font-weight: 850;
+}
+
+.ants-intro-message b {
+  color: #132245;
+  font-size: clamp(30px, 5vw, 58px);
+  line-height: .98;
+  letter-spacing: -.055em;
+  max-width: 520px;
+}
+
+.ants-intro-aura {
+  position: absolute;
+  width: min(560px, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .94) 0 22%, rgba(116, 183, 255, .24) 23% 34%, rgba(139, 92, 246, .12) 35% 48%, transparent 66%),
+    conic-gradient(from 160deg, rgba(59, 130, 246, .08), rgba(139, 92, 246, .18), rgba(59, 130, 246, .12), rgba(139, 92, 246, .08));
+  filter: blur(.2px);
+  opacity: 0;
+  transform: scale(.74);
+  animation: antsCoreAwaken 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-intro-chip-cloud {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.ants-intro-chip {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  min-width: 92px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(59, 130, 246, .18);
+  border-radius: 12px;
+  padding: 0 13px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(245, 250, 255, .8));
+  color: #24365f;
+  font: 900 12px/1 -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+  box-shadow: 0 16px 42px rgba(54, 94, 180, .1);
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.96);
+  opacity: 0;
+  animation: antsChipOrganize 8s cubic-bezier(.22, 1, .36, 1) forwards;
+  animation-delay: var(--delay);
+}
+
+.ants-intro-core {
+  position: relative;
+  width: min(178px, 38vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  transform: scale(.72);
+  animation: antsCoreMark 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-intro-core::before,
+.ants-intro-core::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.ants-intro-core::before {
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0) 20%),
+    radial-gradient(circle, rgba(59, 130, 246, .92), rgba(139, 92, 246, .82) 70%, rgba(139, 92, 246, 0) 72%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .75) inset,
+    0 22px 60px rgba(89, 105, 242, .22),
+    0 0 72px rgba(59, 130, 246, .18);
+}
+
+.ants-intro-core::after {
+  inset: -18px;
+  border: 1px solid rgba(59, 130, 246, .16);
+  background: conic-gradient(from 120deg, transparent, rgba(59, 130, 246, .22), transparent, rgba(139, 92, 246, .18), transparent);
+  mask: radial-gradient(circle, transparent 58%, #000 59%);
+  animation: antsSlowSpin 8s linear infinite;
+}
+
+.ants-intro-core-mark {
+  position: relative;
+  z-index: 1;
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, .92);
+  color: #3b6cff;
+  display: grid;
+  place-items: center;
+  font: 950 32px/1 -apple-system, BlinkMacSystemFont, Inter, Arial, sans-serif;
+  box-shadow: 0 16px 35px rgba(33, 67, 145, .14);
+}
+
+.ants-intro-network {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  animation: antsNetworkReveal 8s ease forwards;
+}
+
+.ants-intro-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ants-intro-lines path {
+  fill: none;
+  stroke: url(#antsIntroLineGradient);
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, .18));
+  animation: antsLineDraw 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-network-node {
+  position: absolute;
+  left: calc(50% + var(--nx));
+  top: calc(50% + var(--ny));
+  width: 86px;
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  transform: translate(-50%, -50%) scale(.84);
+  opacity: 0;
+  animation: antsNodeReveal 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-network-node svg {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(59, 130, 246, .18);
+  border-radius: 16px;
+  padding: 9px;
+  background: rgba(255, 255, 255, .78);
+  color: #476dff;
+  box-shadow: 0 14px 32px rgba(54, 94, 180, .1);
+}
+
+.ants-network-node span {
+  color: #52627f;
+  font: 850 10px/1.1 -apple-system, BlinkMacSystemFont, Inter, Arial, sans-serif;
+}
+
+.ants-intro-approval {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 156px);
+  width: min(330px, 80vw);
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  align-items: center;
+  gap: 14px;
+  transform: translate(-50%, 18px);
+  opacity: 0;
+  border: 1px solid rgba(59, 130, 246, .18);
+  border-radius: 22px;
+  padding: 13px 18px;
+  background: rgba(255, 255, 255, .82);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 24px 64px rgba(49, 86, 164, .12);
+  animation: antsApprovalReveal 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-approval-ring {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: conic-gradient(from 270deg, #3b82f6, #8b5cf6, #3b82f6);
+  color: white;
+  box-shadow: 0 12px 30px rgba(72, 100, 225, .18);
+}
+
+.ants-approval-ring svg {
+  width: 28px;
+  height: 28px;
+}
+
+.ants-approval-copy b {
+  display: block;
+  color: #132245;
+  font: 950 14px/1.2 -apple-system, BlinkMacSystemFont, Inter, Arial, sans-serif;
+}
+
+.ants-approval-copy span {
+  display: block;
+  margin-top: 3px;
+  color: var(--ants-intro-muted);
+  font: 750 12px/1.35 -apple-system, BlinkMacSystemFont, Inter, Arial, sans-serif;
+}
+
+.ants-intro-reveal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: clamp(8px, 2vw, 28px);
+  opacity: 0;
+  transform: translateY(14px) scale(.97);
+  animation: antsLogoReveal 8s cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.ants-intro-logo-card {
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+  max-width: 460px;
+  padding: clamp(22px, 4vw, 34px);
+  border: 1px solid rgba(59, 130, 246, .13);
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .82), rgba(245, 250, 255, .56));
+  backdrop-filter: blur(24px);
+  box-shadow: 0 28px 80px rgba(45, 84, 170, .13);
+}
+
+.ants-intro-logo-card img {
+  width: clamp(92px, 12vw, 132px);
+  height: clamp(92px, 12vw, 132px);
+  object-fit: contain;
+  border-radius: 26px;
+  background: rgba(255, 255, 255, .82);
+  box-shadow: 0 26px 70px rgba(59, 104, 210, .16);
+}
+
+.ants-intro-brand {
+  margin: 0;
+  color: #132245;
+  font: 950 clamp(42px, 7vw, 72px)/.9 -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+  letter-spacing: -.06em;
+}
+
+.ants-intro-title {
+  margin: 0;
+  font: 950 clamp(22px, 3.6vw, 40px)/1.06 -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+  letter-spacing: -.045em;
+  background: linear-gradient(105deg, #246cff 10%, #7b61ff 80%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ants-intro-subtitle {
+  margin: 0;
+  color: #485977;
+  font: 850 clamp(13px, 2vw, 17px)/1.45 -apple-system, BlinkMacSystemFont, "Sukhumvit Set", "Noto Sans Thai", Inter, Arial, sans-serif;
+  text-align: left;
+}
+
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-aura,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-message,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-core,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-chip,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-network,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-lines path,
+.ants-intro-gate[data-intro-mode="short"] .ants-network-node,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-approval,
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-reveal {
+  animation-duration: 1.8s;
+}
+
+.ants-intro-gate[data-intro-mode="short"] .ants-intro-chip {
+  animation-delay: calc(var(--delay) * .2);
+}
+
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-aura,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-video-layer,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-message,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-chip-cloud,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-core,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-network,
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-approval {
+  display: none;
+}
+
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-reveal {
+  opacity: 1;
+  transform: none;
+  justify-content: center;
+  padding-left: 0;
+  animation: antsReducedLogo .5s ease both;
+}
+
+.ants-intro-gate[data-intro-mode="reduced"] .ants-intro-logo-card {
+  justify-items: center;
+}
+
+@keyframes antsChipOrganize {
+  0% {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(.92);
+  }
+  13% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 1;
+    transform: translate(calc(var(--x) * .56), calc(var(--y) * .56)) rotate(calc(var(--r) * .35)) scale(1);
+  }
+  62% {
+    opacity: .92;
+    transform: translate(calc(var(--x) * .14), calc(var(--y) * .14)) rotate(0deg) scale(.86);
+  }
+  74%, 100% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg) scale(.62);
+  }
+}
+
+@keyframes antsIntroMessage {
+  0%, 7% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  18%, 52% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  68%, 100% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes antsCoreAwaken {
+  0%, 18% {
+    opacity: 0;
+    transform: scale(.72);
+  }
+  42% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  72% {
+    opacity: .76;
+    transform: scale(1.04);
+  }
+  88%, 100% {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes antsCoreMark {
+  0%, 18% {
+    opacity: 0;
+    transform: scale(.72);
+  }
+  42% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(.94);
+  }
+  84%, 100% {
+    opacity: 0;
+    transform: scale(.76);
+  }
+}
+
+@keyframes antsSlowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes antsNetworkReveal {
+  0%, 44% {
+    opacity: 0;
+  }
+  56%, 78% {
+    opacity: 1;
+  }
+  92%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes antsLineDraw {
+  0%, 48% {
+    stroke-dashoffset: 460;
+    opacity: 0;
+  }
+  62% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+  82% {
+    stroke-dashoffset: 0;
+    opacity: .86;
+  }
+  94%, 100% {
+    opacity: 0;
+  }
+}
+
+@keyframes antsNodeReveal {
+  0%, 50% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.78);
+  }
+  64%, 82% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  94%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.92);
+  }
+}
+
+@keyframes antsApprovalReveal {
+  0%, 62% {
+    opacity: 0;
+    transform: translate(-50%, 18px);
+  }
+  72%, 86% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  96%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -8px);
+  }
+}
+
+@keyframes antsLogoReveal {
+  0%, 76% {
+    opacity: 0;
+    transform: translateY(14px) scale(.97);
+  }
+  88%, 96% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: .86;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes antsReducedLogo {
+  from {
+    opacity: 0;
+    transform: scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 720px) {
+  .ants-intro-skip,
+  .ants-intro-sound {
+    height: 34px;
+    padding: 0 12px;
+    font-size: 11px;
+  }
+
+  .ants-intro-sound {
+    right: calc(max(18px, env(safe-area-inset-right)) + 86px);
+  }
+
+  .ants-intro-video-desktop {
+    display: none;
+  }
+
+  .ants-intro-video-mobile {
+    display: block;
+  }
+
+  .ants-intro-video-layer::before {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, .82) 0%, rgba(255, 255, 255, .38) 34%, rgba(255, 255, 255, .08) 64%, rgba(255, 255, 255, .78) 100%),
+      radial-gradient(circle at 36% 30%, rgba(255, 255, 255, .78), transparent 34%);
+  }
+
+  .ants-intro-stage {
+    width: 100%;
+    min-height: 72dvh;
+  }
+
+  .ants-intro-message {
+    left: 18px;
+    right: 18px;
+    top: 52px;
+  }
+
+  .ants-intro-message b {
+    max-width: 330px;
+  }
+
+  .ants-intro-chip {
+    min-width: 78px;
+    height: 32px;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .ants-network-node {
+    width: 72px;
+  }
+
+  .ants-network-node svg {
+    width: 38px;
+    height: 38px;
+    border-radius: 14px;
+    padding: 8px;
+  }
+
+  .ants-network-node span {
+    font-size: 9px;
+  }
+
+  .ants-intro-approval {
+    top: calc(50% + 128px);
+    min-height: 76px;
+    grid-template-columns: 48px 1fr;
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+
+  .ants-approval-ring {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ants-approval-copy b {
+    font-size: 13px;
+  }
+
+  .ants-approval-copy span {
+    font-size: 11px;
+  }
+
+  .ants-intro-reveal {
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0 18px 44px;
+  }
+
+  .ants-intro-logo-card {
+    width: min(100%, 360px);
+    justify-items: center;
+    text-align: center;
+    gap: 9px;
+    border-radius: 24px;
+  }
+
+  .ants-intro-subtitle {
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ants-intro-gate *,
+  .ants-intro-gate::before,
+  .ants-intro-gate::after {
+    animation-duration: .5s !important;
+    animation-delay: 0s !important;
+    transition-duration: .12s !important;
+  }
+}

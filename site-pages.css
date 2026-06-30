@@ -71,6 +71,33 @@ a{text-decoration:none;color:inherit}
 .price-card ul{padding:0;margin:14px 0 0;list-style:none;display:grid;gap:7px}
 .price-card li{font-size:12px;line-height:1.45;color:#42516e}
 .price-card li:before{content:"✓";color:#2f65ff;font-weight:950;margin-right:7px}
+.pricing-screen{padding-top:18px;padding-bottom:14px}
+.pricing-screen .grid{grid-template-columns:.7fr 1.3fr;gap:12px;margin-bottom:12px}
+.pricing-screen .visual{min-height:660px}
+.pricing-screen .visual img{height:660px;min-height:660px;object-fit:cover;object-position:center 50%}
+.pricing-screen .copy{min-height:660px;padding:46px 42px 38px;justify-content:center}
+.pricing-screen .eyebrow{font-size:17px;margin-bottom:10px}
+.pricing-screen .copy h1{font-size:44px;line-height:1.03;margin-bottom:14px}
+.pricing-screen .copy p{font-size:16px;line-height:1.58;margin-bottom:18px;max-width:none}
+.pricing-screen .benefits{gap:12px;margin-top:4px}
+.pricing-screen .benefit{gap:6px;font-size:12px;line-height:1.25}
+.pricing-screen .benefit .icon{width:46px;height:46px;font-size:12px}
+.pricing-screen .inline-trial{margin-top:22px;border-radius:18px;background:radial-gradient(circle at 88% 0,rgba(139,92,246,.34),transparent 36%),linear-gradient(135deg,#07143c,#0b1b54);color:#fff;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;box-shadow:0 20px 48px rgba(8,20,68,.14)}
+.pricing-screen .inline-trial b{display:block;font-size:18px;line-height:1.22;margin-bottom:5px}
+.pricing-screen .inline-trial span{display:block;color:rgba(255,255,255,.78);font-size:12px;line-height:1.45}
+.pricing-screen .price-grid{gap:10px;margin-top:10px}
+.pricing-screen .price-card{display:grid;grid-template-columns:.78fr 1.22fr;grid-template-rows:auto auto 1fr;column-gap:14px;align-items:start;border-radius:16px;padding:13px 16px;min-height:112px}
+.pricing-screen .price-card h3{font-size:16px;margin-bottom:4px}
+.pricing-screen .price-card>span{font-size:12px;grid-column:1}
+.pricing-screen .price{font-size:26px;margin:6px 0 0;grid-column:1}
+.pricing-screen .price-card ul{grid-column:2;grid-row:1 / span 3;align-self:center;gap:4px;margin:0;border-left:1px solid #dce6ff;padding-left:13px}
+.pricing-screen .price-card li{font-size:11px;line-height:1.3}
+.pricing-screen .cards{gap:10px;margin-top:10px}
+.pricing-screen .card{min-height:96px;border-radius:16px;padding:14px}
+.pricing-screen .card b{font-size:14px;margin-bottom:6px}
+.pricing-screen .card span{font-size:11px;line-height:1.42}
+.pricing-screen .qr-mini img{width:68px;height:68px;border-radius:12px;padding:6px}
+.pricing-screen .qr-mini .pill{height:34px;padding:0 13px;font-size:12px}
 .download-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:14px}
 .download-card{border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.9);padding:14px;text-align:center;box-shadow:0 18px 42px rgba(45,78,165,.08)}
 .download-card img{width:100%;max-height:210px;object-fit:contain;display:block}
@@ -80,7 +107,7 @@ a{text-decoration:none;color:inherit}
 .resources-page .visual{display:flex;align-items:center;justify-content:center;min-height:360px;padding:18px;background:linear-gradient(135deg,#fff 0%,#f6fbff 58%,#f1ecff 100%)}
 .resources-page .visual img{width:100%;height:100%;max-height:342px;min-height:0;object-fit:contain;border-radius:16px}
 .resources-page .download-card{min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
-.resources-page .download-card img{width:172px;max-width:100%;height:172px;max-height:172px;object-fit:contain;border-radius:14px;background:#fff;padding:8px}
+.resources-page .download-card img{width:100%;max-width:186px;height:238px;max-height:238px;object-fit:contain;border-radius:14px;background:#fff;padding:0}
 .resources-page .download-card b{font-size:14px;line-height:1.25;word-break:normal}
 .resources-page .qr-mini img{flex:0 0 auto;width:96px;height:96px;max-width:96px;object-fit:contain}
 .feature-detail-page .screen{padding-top:22px}
@@ -260,7 +287,7 @@ a{text-decoration:none;color:inherit}
   .nav-inner,.screen{padding-left:16px;padding-right:16px}.actions .pill{display:none}.copy{padding:30px 22px}.copy h1{font-size:30px}.copy p{font-size:15px}.cards,.price-grid,.download-grid,.benefits,.stat-strip,.feature-capability-grid,.field-grid,.pipeline-card,.doc-feature-strip,.mini-flow,.hs-card-grid,.hs-process-rail,.hs-tax-grid,.hs-evidence-grid,.ops-card-grid,.job-mini-grid,.ops-flow-steps,.ops-flow-steps.seven,.ops-metric-strip{grid-template-columns:1fr}.dark-cta{padding:24px 18px}.visual,.visual img{min-height:260px}.qr-mini{flex-wrap:wrap}.feature-hero{padding:26px 18px}.feature-copy h1{font-size:34px}.feature-copy p{font-size:15px}.document-card,.pipeline-card,.comparison-card{padding:18px}.pipeline-step{min-height:92px}.comparison-card h2{font-size:22px}.feature-doc-screen{padding-top:18px}.doc-reading-hero{padding:8px 0;min-height:auto}.doc-hero-copy h1{font-size:46px}.doc-hero-copy h2{font-size:22px}.doc-hero-copy p{font-size:14px}.proof-row{gap:10px}.invoice-sheet{min-height:340px;padding:42px 22px 22px}.doc-hero-stage{gap:14px}.extracted-panel{padding:22px 12px 12px}.score-badge{position:static;margin:0 0 12px auto;width:max-content}.field-list div{grid-template-columns:1fr;gap:4px}.doc-feature-strip{padding:10px}.doc-feature-strip article{grid-template-columns:44px 1fr}.mini-flow article+article:before{display:none}.doc-workflow-row{gap:12px}.bottom-note{width:100%;border-radius:18px;padding:14px 16px}.hs-code-screen{padding-top:18px}.hs-hero{padding:6px 0;min-height:auto}.hs-copy h1{font-size:44px}.hs-copy h2{font-size:22px}.hs-copy p{font-size:14px}.hs-console{padding:12px;border-radius:18px}.hs-console-top{align-items:flex-start;flex-direction:column}.hs-dashboard-grid{gap:10px}.hs-option,.hs-option.primary{grid-template-columns:1fr}.hs-option.primary em{position:static}.hs-process-rail{gap:10px}.hs-process-rail span{width:56px;height:56px}.hs-safe-band{padding:18px}.hs-safe-band>div:first-child{grid-template-columns:1fr}.hs-safe-band>div:first-child span{grid-row:auto;margin-bottom:10px}.ops-feature-screen{padding-top:18px}.ops-hero{padding:6px 0;min-height:auto}.ops-copy h1{font-size:42px}.ops-copy h2{font-size:21px}.ops-copy p{font-size:14px}.ops-console{padding:12px;border-radius:18px}.job-progress-card{grid-template-columns:1fr}.progress-ring{margin:auto}.ops-flow-band{padding:18px}.ops-flow-steps article:not(:last-child):after{display:none}.app-main,.app-side,.app-risk,.cost-side{padding:14px}.agency-table article,.cost-row,.cost-row.head{grid-template-columns:1fr}.customs-summary div,.cost-summary article{border-left:0;border-top:1px solid #e4ecff}.ops-metric-strip article{border-right:0;border-bottom:1px solid #dce6ff}
   .resources-page .visual{min-height:230px;padding:12px}
   .resources-page .visual img{max-height:220px}
-  .resources-page .download-card img{width:170px;height:170px;max-height:170px}
+  .resources-page .download-card img{width:100%;height:220px;max-height:220px}
 }
 
 /* Feature 06: Billing & Collection */
