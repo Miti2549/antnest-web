@@ -1,0 +1,4 @@
+.DS_Store
+qa-*.png
+prompts/
+push-to-github.sh

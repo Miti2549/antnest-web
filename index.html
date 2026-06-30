@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ANT | Agentic AI Freight System</title>
+  <meta name="description" content="ANT Agentic AI Freight System สำหรับงาน Freight, Logistics, Document AI, Shipment และ Dashboard ของบริษัทไทย" />
+  <style>
+    :root{
+      --white:#ffffff;
+      --ice:#f7fbff;
+      --blue:#3b82f6;
+      --blue2:#60a5fa;
+      --purple:#8b5cf6;
+      --ink:#111936;
+      --muted:#617089;
+      --line:rgba(60,109,210,.14);
+      --soft:rgba(255,255,255,.78);
+      --shadow:0 24px 80px rgba(42,89,150,.13);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;color:var(--ink);
+      font-family:-apple-system,BlinkMacSystemFont,"Sukhumvit Set","Noto Sans Thai",Inter,Arial,sans-serif;
+      background:
+        radial-gradient(circle at 74% 4%,rgba(139,92,246,.16),transparent 30%),
+        radial-gradient(circle at 10% 10%,rgba(96,165,250,.14),transparent 30%),
+        linear-gradient(135deg,#fff 0%,#fbfdff 46%,#eef7ff 78%,#f5efff 100%);
+      line-height:1.55;overflow-x:hidden;
+    }
+    body:before{
+      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:linear-gradient(rgba(59,130,246,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(139,92,246,.026) 1px,transparent 1px);
+      background-size:72px 72px;
+      mask-image:linear-gradient(180deg,rgba(0,0,0,.36),rgba(0,0,0,.04));
+    }
+    a{color:inherit}
+    .page{position:relative;z-index:1}
+    .nav{
+      position:sticky;top:0;z-index:20;height:68px;
+      background:rgba(255,255,255,.78);backdrop-filter:blur(24px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{max-width:1536px;margin:0 auto;height:100%;display:flex;align-items:center;gap:28px;padding:0 34px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:238px}
+    .brand img{width:48px;height:48px;border-radius:11px;object-fit:cover;box-shadow:0 12px 34px rgba(59,130,246,.16)}
+    .brand span{display:block;font-size:12px;letter-spacing:.06em;color:#2f3b58;font-weight:800}
+    .menu{display:flex;align-items:center;justify-content:center;gap:30px;flex:1}
+    .menu a{font-size:14px;text-decoration:none;color:#13203c;font-weight:650}
+    .menu a:hover{color:var(--blue)}
+    .nav-actions{display:flex;align-items:center;gap:12px}
+    .pill{height:40px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.75);padding:0 15px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;font-weight:800;color:#1f3272}
+    .pill.primary{border:0;color:white;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 16px 34px rgba(95,94,240,.24)}
+    .lang-switch{height:40px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.74);display:flex;align-items:center;padding:3px;gap:3px}
+    .lang-switch button{height:32px;border:0;border-radius:9px;background:transparent;color:#1f3272;font-weight:900;font-size:12px;padding:0 10px;cursor:pointer}
+    .lang-switch button.active{color:#fff;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 8px 18px rgba(85,104,255,.18)}
+    .hero-shell{position:relative;max-width:1536px;margin:0 auto;padding:0 46px;overflow:hidden}
+    .hero{
+      position:relative;min-height:342px;padding:20px 0 32px;
+      display:grid;grid-template-columns:minmax(500px,.9fr) 1.1fr;align-items:center;
+    }
+    .hero > div:first-child{position:relative;z-index:3}
+    .hero-art{position:absolute;left:0;right:0;top:0;bottom:0;z-index:0;overflow:hidden;background:
+      radial-gradient(circle at 84% 18%,rgba(139,92,246,.2),transparent 26%),
+      linear-gradient(90deg,rgba(255,255,255,.94) 0%,rgba(255,255,255,.84) 34%,rgba(255,255,255,.3) 62%,rgba(255,255,255,.04) 100%),
+      url("assets/hero-ai-logistics-wide-1920x1080.png");
+      background-size:cover;background-position:center 52%}
+    .hero-art:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.97) 21%,rgba(255,255,255,.72) 38%,rgba(255,255,255,.08) 64%,rgba(255,255,255,0) 100%);z-index:2}
+    .hero-art:after{content:"";position:absolute;inset:auto 0 0 0;height:22%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.95));z-index:2}
+    .hero-art img{position:absolute;z-index:1;right:172px;top:-38px;width:auto;height:500px;object-fit:contain;object-position:center top;filter:saturate(1.04) contrast(1.01)}
+    .eyebrow{letter-spacing:.22em;text-transform:uppercase;color:#2f65ff;font-weight:900;font-size:12px;margin-bottom:10px}
+    h1{font-size:clamp(30px,2.55vw,40px);line-height:1.08;letter-spacing:-.045em;margin:0 0 12px;max-width:690px}
+    .gradient-text{background:linear-gradient(100deg,#2f80ff 8%,#8b5cf6 88%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:14px;color:#31405d;max-width:610px;margin:0 0 16px}
+    .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:14px}
+    .btn{height:42px;border-radius:12px;padding:0 22px;border:1px solid var(--line);display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:900;background:rgba(255,255,255,.88);color:#183064;box-shadow:0 12px 28px rgba(46,88,175,.06)}
+    .btn.main{min-width:262px;color:#fff;background:linear-gradient(135deg,#2f80ff 0%,#5668ff 52%,#a855f7 100%);border:0;box-shadow:0 18px 38px rgba(96,90,240,.25)}
+    .social-icons{display:flex;align-items:center;gap:10px}
+    .social-icon{width:44px;height:42px;border-radius:13px;border:1px solid var(--line);display:grid;place-items:center;text-decoration:none;background:rgba(255,255,255,.9);box-shadow:0 12px 28px rgba(46,88,175,.06);font-size:13px;font-weight:950;color:#173064}
+    .social-icon.fb{color:#fff;background:#1877f2;border-color:#1877f2}
+    .social-icon.line{color:#fff;background:#22c55e;border-color:#22c55e;font-size:10px}
+    .social-icon.linkedin{color:#fff;background:#0a66c2;border-color:#0a66c2;font-size:16px}
+    .floating{position:absolute;z-index:4;left:46.6%;top:68px;display:grid;gap:10px}
+    .float-card{width:144px;border:1px solid rgba(59,130,246,.22);background:linear-gradient(135deg,rgba(255,255,255,.78),rgba(244,249,255,.58));backdrop-filter:blur(18px);border-radius:10px;padding:8px 12px;box-shadow:0 20px 48px rgba(47,104,210,.13),inset 0 1px 0 rgba(255,255,255,.82);font-size:10px;color:#23345f;position:relative}
+    .float-card:nth-child(2){margin-left:22px}
+    .float-card:nth-child(3){margin-left:44px}
+    .float-card:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(120deg,rgba(255,255,255,.65),transparent 46%,rgba(139,92,246,.08));pointer-events:none}
+    .float-card b{display:block;color:#2563eb;margin-bottom:8px}
+    .bar{height:4px;border-radius:999px;background:#e8efff;overflow:hidden;margin-top:7px}
+    .bar i{display:block;height:100%;border-radius:inherit;background:linear-gradient(90deg,#3b82f6,#8b5cf6)}
+    .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;max-width:710px;margin-top:6px}
+    .stat{display:flex;align-items:center;gap:10px;padding:6px 18px 6px 0;border-right:1px solid var(--line)}
+    .stat:last-child{border-right:0}
+    .stat-icon{width:34px;height:34px;border-radius:50%;border:1px solid rgba(59,130,246,.2);display:grid;place-items:center;color:#5865ff;background:#fff;box-shadow:0 10px 26px rgba(65,111,220,.08);font-weight:950}
+    .stat b{display:block;font-size:20px;line-height:1;background:linear-gradient(135deg,#2f80ff,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
+    .stat b small{font-size:11px;color:#31405d;background:none;-webkit-text-fill-color:#31405d;font-weight:850;letter-spacing:0}
+    .stat span{display:block;font-size:11px;color:#243451;font-weight:800}
+    .panel-wrap{max-width:1536px;margin:-24px auto 0;padding:0 46px 12px;position:relative;z-index:6}
+    .panel{border:1px solid var(--line);background:rgba(255,255,255,.7);backdrop-filter:blur(22px);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .feature-strip{display:grid;grid-template-columns:1.05fr repeat(6,1fr);gap:12px;align-items:stretch;padding:6px 22px}
+    .strip-title{font-size:18px;font-weight:950;line-height:1.08;padding:2px 0}
+    .strip-title span{color:#2f80ff}
+    .mini-card{border:1px solid var(--line);background:rgba(255,255,255,.78);border-radius:10px;padding:7px 9px;min-height:44px;display:flex;gap:8px;align-items:center}
+    .mini-icon{width:28px;height:28px;border-radius:8px;border:1px solid rgba(59,130,246,.22);display:grid;place-items:center;color:#5865ff;font-size:12px;font-weight:900;background:linear-gradient(135deg,rgba(59,130,246,.08),rgba(139,92,246,.08))}
+    .mini-card b{display:block;font-size:12px;line-height:1.12}
+    .mini-card span{display:block;font-size:10px;color:var(--muted);margin-top:1px;line-height:1.12}
+    .dashboard{display:grid;grid-template-columns:1.2fr .56fr .52fr;gap:14px;margin-top:10px}
+    .dashboard>.panel{height:312px;overflow:hidden}
+    .work-card,.social-card,.line-card,.download-card,.promo-card,.trust-card{padding:18px}
+    .work-card{padding:0;min-height:0;overflow:hidden}
+    .workflow-art{width:100%;height:100%;display:block;object-fit:fill;object-position:center center}
+    .section-title{font-size:22px;font-weight:950;line-height:1.2;margin:0}
+    .section-title span{color:#2f80ff}
+    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;align-items:start;text-align:center}
+    .circle{width:46px;height:46px;margin:0 auto 8px;border-radius:50%;display:grid;place-items:center;color:white;font-size:20px;font-weight:950;background:linear-gradient(135deg,#38bdf8,#8b5cf6);box-shadow:0 14px 34px rgba(99,102,241,.26)}
+    .process b{display:block;font-size:13px}
+    .process span{display:block;color:var(--muted);font-size:11px}
+    .process-line{position:relative}
+    .process-line:after{content:"";position:absolute;top:23px;left:calc(50% + 30px);width:calc(100% - 60px);height:1px;background:linear-gradient(90deg,#93c5fd,#a78bfa)}
+    .process-line:last-child:after{display:none}
+    .social-card h3,.line-card h3,.download-card h3,.promo-card h3,.trust-card h3{margin:0 0 10px;font-size:18px}
+    .embed-shell{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden;height:276px}
+    .embed-fallback{height:100%;display:block;color:#fff;text-decoration:none;background:linear-gradient(135deg,rgba(19,36,68,.48),rgba(69,110,200,.16)),url("assets/campaign01-final-post.png");background-size:cover;background-position:center}
+    .embed-fallback b{display:block;font-size:17px;line-height:1.15}
+    .embed-fallback span{display:block;font-size:12px;margin-top:4px;opacity:.9}
+    .small-text{font-size:12px;color:var(--muted);margin:12px 0 0}
+    .full-row{display:grid;grid-template-columns:1.08fr .58fr .62fr;gap:14px;margin-top:10px}
+    .full-row>.panel{height:235px;overflow:hidden}
+    .download-card .small-text{margin:2px 0 0}
+    .download-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:8px}
+    .doc{border:1px solid var(--line);background:#fff;border-radius:13px;padding:9px;min-height:66px}
+    .doc b{display:block;font-size:12px;margin:6px 0 2px}
+    .doc small{color:var(--muted);font-size:11px}
+    .badge{display:inline-flex;border-radius:999px;background:#eef4ff;color:#2f65ff;padding:3px 8px;font-size:10px;font-weight:900}
+    .qr-card{border:1px solid var(--line);background:#fff;border-radius:13px;padding:7px 8px 8px;min-height:150px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;text-decoration:none;color:#142345;box-shadow:inset 0 1px 0 rgba(255,255,255,.82)}
+    .qr-card.official{border:0;background:transparent;padding:0;box-shadow:none;justify-content:center;overflow:visible}
+    .qr-card-img{width:100%;height:150px;object-fit:contain;display:block}
+    .qr-badge{width:108px;height:25px;border-radius:7px;background:#05070c;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:.98;margin-bottom:5px;box-shadow:0 8px 18px rgba(10,20,40,.12);font-weight:900}
+    .qr-badge span{font-size:7px;letter-spacing:.02em}
+    .qr-badge strong{font-size:12px;letter-spacing:-.03em}
+    .qr-badge.web{background:linear-gradient(135deg,#2f80ff,#8b5cf6)}
+    .qr-badge.care{background:linear-gradient(135deg,#16a34a,#22c55e)}
+    .qr-img{width:72px;height:72px;object-fit:contain;display:block;margin-bottom:4px}
+    .qr-title{font-size:12px;font-weight:950;line-height:1.1}
+    .qr-card small{font-size:10px;color:var(--muted);line-height:1.22;margin-top:2px}
+    .promo-card{display:grid;grid-template-columns:1fr 1fr;align-items:center;background:radial-gradient(circle at 82% 12%,rgba(168,85,247,.28),transparent 34%),radial-gradient(circle at 8% 8%,rgba(59,130,246,.11),transparent 32%),linear-gradient(135deg,#fff,#eff7ff 58%,#f4ecff)}
+    .credit{font-size:42px;line-height:.9;font-weight:950;color:#3978ff;letter-spacing:-.05em}
+    .gift{width:96px;height:96px;margin:-2px 0 0 auto;position:relative;filter:drop-shadow(0 18px 26px rgba(91,95,235,.22))}
+    .gift-img{width:96px;height:96px;object-fit:cover;display:block;border-radius:16px}
+    .trust-list{display:grid;grid-template-columns:1fr;gap:6px;margin-top:8px}
+    .trust-item{border:1px solid var(--line);border-radius:12px;background:#fff;padding:7px 10px;font-size:12px;color:#23345f;font-weight:850}
+    .trust-item span{display:block;color:var(--muted);font-size:11px;font-weight:650;margin-top:2px}
+    .about-page{max-width:1536px;margin:0 auto 42px;padding:0 46px;position:relative;z-index:5}
+    .about-shell{padding:34px 34px 30px;background:linear-gradient(135deg,rgba(255,255,255,.9),rgba(244,249,255,.78) 54%,rgba(246,239,255,.7));overflow:hidden;position:relative}
+    .about-shell:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 84% 12%,rgba(139,92,246,.16),transparent 30%),radial-gradient(circle at 16% 10%,rgba(59,130,246,.12),transparent 28%);pointer-events:none}
+    .about-inner{position:relative;z-index:1}
+    .about-kicker{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#2f65ff;font-weight:950;margin-bottom:8px}
+    .about-hero{display:grid;grid-template-columns:1.02fr .98fr;gap:28px;align-items:center;margin-bottom:18px}
+    .about-copy{position:relative;z-index:2}
+    .about-head h2{font-size:36px;line-height:1.08;letter-spacing:-.045em;margin:0}
+    .about-copy h2{font-size:42px;line-height:1.07;letter-spacing:-.05em;margin:0 0 14px}
+    .about-lead{margin:0;color:#40506e;font-size:15px;line-height:1.75}
+    .about-visual{min-height:320px;border:1px solid var(--line);border-radius:24px;position:relative;overflow:hidden;background:linear-gradient(135deg,#fff,#eef7ff 54%,#f2ebff)}
+    .about-visual:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.1)),url("assets/hero-ai-logistics-wide-1920x1080.png");background-size:cover;background-position:center;opacity:.72}
+    .about-visual img{position:absolute;right:4%;bottom:-22px;height:355px;width:auto;filter:drop-shadow(0 22px 38px rgba(80,93,170,.14))}
+    .about-chip{position:absolute;left:24px;bottom:24px;display:grid;gap:8px;max-width:285px}
+    .about-chip span{border:1px solid rgba(82,125,255,.18);border-radius:14px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);padding:10px 12px;color:#23345f;font-size:12px;font-weight:900;box-shadow:0 16px 40px rgba(56,94,180,.08)}
+    .about-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:14px}
+    .about-card{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.72);backdrop-filter:blur(16px);padding:18px;box-shadow:0 14px 42px rgba(43,82,160,.08)}
+    .about-card h3{font-size:18px;line-height:1.24;margin:0 0 9px;color:#121b39}
+    .about-card p{margin:0;color:#4b5c78;font-size:13px;line-height:1.72}
+    .about-card.main{grid-row:span 2}
+    .about-card.wide{grid-column:1 / -1}
+    .about-list{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+    .about-list span{border:1px solid rgba(59,130,246,.15);border-radius:12px;background:#fff;padding:9px 10px;color:#23345f;font-size:12px;font-weight:850;text-align:center}
+    .about-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 22px}
+    .about-metric{border:1px solid rgba(59,130,246,.16);border-radius:16px;background:rgba(255,255,255,.78);backdrop-filter:blur(14px);padding:13px 14px;display:grid;grid-template-columns:42px 1fr;gap:10px;align-items:center;box-shadow:0 16px 36px rgba(55,99,190,.08)}
+    .about-metric-icon{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#3b82f6,#8b5cf6);display:flex;align-items:center;justify-content:center;color:white;font-weight:950;box-shadow:0 12px 24px rgba(87,103,239,.22)}
+    .about-metric b{display:block;color:#2563eb;font-size:24px;line-height:1;font-weight:950;letter-spacing:-.04em}
+    .about-metric span{display:block;color:#23345f;font-size:11px;font-weight:850;line-height:1.35;margin-top:2px}
+    .about-workflow{margin-top:18px;border:1px solid var(--line);border-radius:22px;background:rgba(255,255,255,.76);backdrop-filter:blur(16px);box-shadow:0 16px 48px rgba(43,82,160,.08);padding:18px 18px 16px}
+    .about-workflow h3{text-align:center;margin:0 0 14px;font-size:26px;letter-spacing:-.035em;color:#121b39}
+    .about-steps{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+    .about-step{min-height:126px;padding:12px 12px 10px;border-right:1px solid rgba(176,195,235,.55);position:relative}
+    .about-step:last-child{border-right:0}
+    .about-step:after{content:"›";position:absolute;right:-8px;top:32px;color:#8b5cf6;font-size:30px;font-weight:300;z-index:2}
+    .about-step:last-child:after{display:none}
+    .about-step-icon{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.16));border:1px solid rgba(95,120,255,.14);display:flex;align-items:center;justify-content:center;color:#4f6cff;font-weight:950;margin-bottom:9px}
+    .about-step b{display:block;color:#142345;font-size:13px;line-height:1.28;margin-bottom:5px}
+    .about-step span{display:block;color:#4b5c78;font-size:11px;line-height:1.45}
+    .about-bottom-principles{display:grid;grid-template-columns:1.1fr repeat(5,1fr);gap:0;margin-top:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.82);overflow:hidden}
+    .about-bottom-title,.about-bottom-item{padding:13px 16px;min-height:62px;display:flex;align-items:center;gap:10px;border-right:1px solid rgba(176,195,235,.55)}
+    .about-bottom-item:last-child{border-right:0}
+    .about-bottom-title{font-weight:950;color:#142345;line-height:1.15}
+    .about-bottom-title small{display:block;color:#3b82f6;letter-spacing:.06em;margin-top:3px}
+    .about-bottom-dot{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.14));display:flex;align-items:center;justify-content:center;color:#4f6cff;font-weight:950;flex:0 0 auto}
+    .about-bottom-item b{display:block;color:#142345;font-size:12px;margin-bottom:2px}
+    .about-bottom-item span{display:block;color:#5b6a86;font-size:11px;line-height:1.3}
+    .about-principles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+    .principle{border:1px solid rgba(59,130,246,.16);border-radius:14px;background:linear-gradient(135deg,rgba(255,255,255,.86),rgba(241,247,255,.72));padding:13px}
+    .principle b{display:block;font-size:13px;color:#172448;margin-bottom:4px}
+    .principle span{display:block;font-size:11px;color:#617089;line-height:1.5}
+    .about-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:16px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#eef6ff,#f5edff);border:1px solid var(--line)}
+    .about-cta p{margin:0;color:#23345f;font-size:13px;font-weight:800}
+    footer{
+      max-width:1536px;
+      margin:10px auto 18px;
+      padding:12px 46px 0;
+      color:#617089;
+      font-size:12px;
+      font-weight:750;
+      text-align:center;
+    }
+    .mobile-only{display:none}
+    @media(max-width:1120px){
+      .menu{display:none}.brand{min-width:auto}.hero{grid-template-columns:1fr;min-height:auto}.hero-art{position:relative;right:auto;width:100%;height:420px;grid-row:2;margin-top:18px;border-radius:24px}.hero-art:before{background:linear-gradient(180deg,rgba(255,255,255,.08),#fff)}.hero-art img{right:50%;top:-20px;transform:translateX(50%);height:470px}.floating{right:24px;top:300px}.feature-strip,.dashboard,.full-row,.about-head,.about-hero,.about-grid,.about-principles,.about-list,.about-metrics,.about-bottom-principles{grid-template-columns:1fr}.about-card.wide{grid-column:auto}.about-steps{grid-template-columns:repeat(2,1fr)}.about-step{border-right:0;border-bottom:1px solid rgba(176,195,235,.55)}.about-step:after{display:none}.about-bottom-title,.about-bottom-item{border-right:0;border-bottom:1px solid rgba(176,195,235,.55)}.stat-row{grid-template-columns:repeat(2,1fr)}.stat:nth-child(2){border-right:0}.work-card{grid-template-columns:1fr}.download-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:680px){
+      .nav-inner,.hero-shell,.panel-wrap,.about-page,footer{padding-left:16px;padding-right:16px}.nav-actions .pill:not(.primary){display:none}.hero{padding-top:38px}.hero-art{height:330px}.floating{display:none}h1{font-size:38px}.lead{font-size:17px}.stat-row{grid-template-columns:1fr}.stat{border-right:0;border-bottom:1px solid var(--line)}.feature-strip{padding:18px}.process{grid-template-columns:1fr 1fr}.process-line:after{display:none}.download-grid,.promo-card{grid-template-columns:1fr}.about-shell{padding:24px 18px}.about-copy h2,.about-head h2{font-size:30px}.about-visual{min-height:270px}.about-visual img{height:300px;right:-12%}.about-chip{left:14px;bottom:14px;max-width:210px}.about-steps{grid-template-columns:1fr}.about-cta{align-items:flex-start;flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="#top">
+          <img src="assets/ant-logo-master.png" alt="ANT logo">
+          <div><span>Agentic AI Freight System</span></div>
+        </a>
+        <div class="menu">
+          <a href="#top" data-i18n="nav.home">Home</a>
+          <a href="solutions.html" data-i18n="nav.solutions">Solutions</a>
+          <a href="features.html" data-i18n="nav.features">Features</a>
+          <a href="integrations.html" data-i18n="nav.integrations">Integrations</a>
+          <a href="resources.html" data-i18n="nav.resources">Resources</a>
+          <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+          <a href="about.html" data-i18n="nav.about">About Us</a>
+        </div>
+        <div class="nav-actions">
+          <div class="lang-switch" aria-label="Language">
+            <button type="button" class="active" data-lang="th">TH</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
+          <a class="pill" href="https://antnest.ai/" target="_blank" data-i18n="nav.login">Login</a>
+          <a class="pill primary" href="https://antnest.ai/" target="_blank" data-i18n="nav.trial">ทดลองใช้ฟรี</a>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero-shell">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">AGENTIC AI FREIGHT SYSTEM</div>
+          <h1 data-i18n-html="hero.title">ระบบ Agentic AI Freight System<br><span class="gradient-text">สำหรับ Document Ai Agent</span></h1>
+          <p class="lead" data-i18n="hero.lead">Ants ช่วยอ่านเอกสาร ตรวจข้อมูล แยกงานอัตโนมัติ และส่งต่อให้ทีมควบคุมงาน Freight ได้ในที่เดียว</p>
+          <div class="hero-ctas">
+            <a class="btn main" href="https://antnest.ai/" target="_blank"><span data-i18n="hero.cta">ทดลองใช้ฟรี 1,000 Credits</span> <span>→</span></a>
+            <div class="social-icons" aria-label="Social follow links">
+              <a class="social-icon fb" href="https://www.facebook.com/antnest.ai" target="_blank" aria-label="Follow on Facebook">f</a>
+              <a class="social-icon line" href="https://line.me/R/ti/p/@antnestai" target="_blank" aria-label="Add LINE Official Account">LINE</a>
+              <a class="social-icon linkedin" href="https://www.linkedin.com/search/results/all/?keywords=antnest.ai" target="_blank" aria-label="Find ANT on LinkedIn">in</a>
+            </div>
+          </div>
+          <div class="stat-row">
+            <div class="stat"><div class="stat-icon">↗</div><div><span data-i18n="stats.rework">ลดงานซ้ำ</span><b>80%</b></div></div>
+            <div class="stat"><div class="stat-icon">□</div><div><span data-i18n="stats.docs">ประมวลผลเอกสาร</span><b data-i18n-html="stats.docsValue">12-15 <small>ฉบับ/Shipment</small></b></div></div>
+            <div class="stat"><div class="stat-icon">✓</div><div><span>Human QA</span><b>Proof</b></div></div>
+            <div class="stat"><div class="stat-icon">○</div><div><span data-i18n="stats.speed">ทำงานเร็วขึ้น</span><b data-i18n="stats.speedValue">5 เท่า</b></div></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true"><img src="assets/hero-ai-model-approved-portrait.png" alt=""></div>
+        <div class="floating" aria-hidden="true">
+          <div class="float-card"><b>Shipment Overview</b>Import <span style="float:right">75%</span><div class="bar"><i style="width:75%"></i></div></div>
+          <div class="float-card"><b>Document Review</b>In Progress <span style="float:right">9/12</span><div class="bar"><i style="width:78%"></i></div></div>
+          <div class="float-card"><b>Document AI</b>Extracting... <span style="float:right">98%</span><div class="bar"><i style="width:98%"></i></div></div>
+        </div>
+      </section>
+    </header>
+
+    <main class="panel-wrap">
+      <section id="features" class="panel feature-strip">
+        <div class="strip-title" data-i18n-html="features.title"><span>Ants</span> ครอบคลุม<br>ทุกงาน Freight</div>
+        <div class="mini-card"><div class="mini-icon">D</div><div><b>Document AI</b><span data-i18n="features.document">อ่านเอกสารอัตโนมัติ</span></div></div>
+        <div class="mini-card"><div class="mini-icon">C</div><div><b>Discrepancy Check</b><span data-i18n="features.discrepancy">ตรวจสอบความถูกต้อง</span></div></div>
+        <div class="mini-card"><div class="mini-icon">H</div><div><b>HS Code & Permits</b><span data-i18n="features.hs">ตรวจพิกัดและใบอนุญาต</span></div></div>
+        <div class="mini-card"><div class="mini-icon">$</div><div><b>Cost Control</b><span data-i18n="features.cost">ควบคุมค่าใช้จ่าย</span></div></div>
+        <div class="mini-card"><div class="mini-icon">R</div><div><b>Real-time Dashboard</b><span data-i18n="features.dashboard">เห็นภาพรวมแบบเรียลไทม์</span></div></div>
+        <div class="mini-card"><div class="mini-icon">S</div><div><b>Security & Compliance</b><span data-i18n="features.security">ปลอดภัย มีหลักฐานข้อมูล</span></div></div>
+      </section>
+
+      <section id="solutions" class="dashboard">
+        <div class="panel work-card">
+          <img class="workflow-art" src="assets/ants-workflow-4step-premium.png" alt="ทำงานอย่างไรกับ Ants">
+        </div>
+
+        <div id="connect" class="panel social-card">
+          <div class="embed-shell">
+            <iframe title="ANT latest video" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D1055557956911555&width=340&show_text=false&height=280" style="width:100%;height:100%;border:0"></iframe>
+          </div>
+        </div>
+
+        <div class="panel line-card">
+          <div class="embed-shell">
+            <a class="embed-fallback" href="https://www.facebook.com/antnest.ai" target="_blank" aria-label="เปิด Facebook Page"></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="full-row">
+        <div id="download" class="panel download-card">
+          <h3 data-i18n="download.title">ดาวน์โหลดและเริ่มใช้ ANT</h3>
+          <p class="small-text" data-i18n="download.lead">สแกน QR เพื่อเข้าใช้งาน APP, Web App และ ANT Care</p>
+          <div class="download-grid">
+            <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT iOS link">
+              <img class="qr-card-img" src="assets/qr-ios-ant.png" alt="iOS ANT QR">
+            </a>
+            <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT Android link">
+              <img class="qr-card-img" src="assets/qr-android-ant.png" alt="Android ANT QR">
+            </a>
+            <a class="qr-card official" href="https://antnest.ai/" target="_blank" aria-label="Open ANT Web App">
+              <img class="qr-card-img" src="assets/qr-web-ant.png" alt="PC Website QR">
+            </a>
+            <a class="qr-card" href="https://line.me/R/ti/p/@antnestai" target="_blank">
+              <span class="qr-badge care"><span>CHAT WITH</span><strong>ANT Care</strong></span>
+              <img class="qr-img" src="assets/qr-ant-care.png" alt="ANT Care QR">
+              <span class="qr-title">ANT Care</span>
+              <small>AI Assistant</small>
+            </a>
+          </div>
+        </div>
+
+        <div id="pricing" class="panel promo-card">
+          <div>
+            <h3 data-i18n-html="promo.title">โปรโมชันพิเศษ<br>รับฟรี!</h3>
+            <div class="credit">1,000</div>
+            <div style="font-size:20px;font-weight:900;color:#23345f">Credits</div>
+          </div>
+          <div>
+            <p class="small-text" style="font-weight:900;color:#23345f" data-i18n-html="promo.loop">ใช้งานครบลูปแรก<br>รับคืนเพิ่ม</p>
+            <div style="font-size:32px;font-weight:950;color:#3978ff;line-height:1">500</div>
+            <div style="font-weight:900;color:#23345f">Credits</div>
+            <div class="gift" aria-label="gift box"><img class="gift-img" src="assets/gift-premium-1024.png" alt=""></div>
+          </div>
+        </div>
+
+        <div id="about" class="panel trust-card">
+          <h3 data-i18n="proof.title">หลักฐานและความน่าเชื่อถือ</h3>
+          <div class="trust-list">
+            <div class="trust-item">Owner-approved Proof<span data-i18n="proof.owner">ใช้เฉพาะเคสที่เจ้าของอนุมัติแล้ว</span></div>
+            <div class="trust-item">Audit Trail<span data-i18n="proof.audit">บันทึกที่มาและผลลัพธ์ของงานเอกสาร</span></div>
+            <div class="trust-item">Security Review<span data-i18n="proof.security">แสดงมาตรฐานจริงเมื่อมีหลักฐานยืนยัน</span></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Legacy inline About content is intentionally hidden; the active About page is about.html. -->
+    <section id="about-us" class="about-page" hidden>
+      <div class="panel about-shell">
+        <div class="about-inner">
+          <div class="about-hero">
+            <div class="about-copy">
+              <div class="about-kicker">ABOUT ANTS</div>
+              <h2 data-i18n-html="about.title">Ants เกิดจากความเข้าใจจริง<br><span class="gradient-text">ในงาน Freight</span></h2>
+              <p class="about-lead" data-i18n="about.lead">Ants คือ Agentic AI Freight System ที่ออกแบบจากประสบการณ์จริงในธุรกิจ Freight Forwarder ตั้งแต่ปี 2545 ร่วมกับทีมผู้เชี่ยวชาญด้านซอฟต์แวร์และ Freight Ai Agent เพื่อเปลี่ยนงานฟเรทที่กระจัดกระจาย ให้กลับมาอยู่ในระบบเดียวที่ควบคุมได้ ตรวจสอบได้ และทำงานต่อกันได้จริง</p>
+            </div>
+            <div class="about-visual" aria-label="AI logistics visual">
+              <img src="assets/hero-ai-model-approved-portrait.png" alt="">
+              <div class="about-chip">
+                <span data-i18n="about.chip1">Freight Ai Agent อ่าน ตรวจ และจัดระเบียบงาน</span>
+                <span data-i18n="about.chip2">Human Approval ควบคุมทุกจุดสำคัญ</span>
+                <span data-i18n="about.chip3">Audit Trail ตรวจสอบย้อนหลังได้</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-metrics">
+            <div class="about-metric"><div class="about-metric-icon">20+</div><div><b>20+ ปี</b><span data-i18n="about.metric1">ประสบการณ์จริงในธุรกิจ Freight</span></div></div>
+            <div class="about-metric"><div class="about-metric-icon">80%</div><div><b>80%</b><span data-i18n="about.metric2">เป้าหมายลดงานซ้ำและเวลาที่ไม่จำเป็น</span></div></div>
+            <div class="about-metric"><div class="about-metric-icon">QA</div><div><b>Proof</b><span data-i18n="about.metric3">ให้คนตรวจและอนุมัติก่อนจุดสำคัญ</span></div></div>
+            <div class="about-metric"><div class="about-metric-icon">AT</div><div><b>Audit</b><span data-i18n="about.metric4">เก็บหลักฐานและตรวจสอบย้อนหลังได้</span></div></div>
+          </div>
+
+          <div class="about-grid">
+            <article class="about-card main">
+              <h3 data-i18n="about.storyTitle">เราไม่ได้เริ่มจากคำว่า AI เราเริ่มจากคำว่า “งานมันกระจายเกินไป”</h3>
+              <p data-i18n="about.storyBody">คนที่อยู่ในธุรกิจฟเรทจริงจะรู้ว่า ปัญหาที่ทำให้ทีมเหนื่อยไม่ใช่แค่ปริมาณงาน แต่คือข้อมูลสำคัญที่อยู่คนละที่ ราคาอยู่คนละไฟล์ เอกสารอยู่คนละอีเมล สถานะงานอยู่ใน LINE และหลายแผนกยังต้องพิมพ์ข้อมูลซ้ำจากจุดเริ่มต้น Ants ถูกออกแบบจากความจริงเหล่านี้ ไม่ใช่จากทฤษฎีของซอฟต์แวร์ทั่วไป</p>
+            </article>
+            <article class="about-card">
+              <h3 data-i18n="about.whyTitle">ทำไมต้องสร้าง Ants</h3>
+              <p data-i18n="about.whyBody">เพราะธุรกิจฟเรทไม่ควรถูกทิ้งไว้กับระบบเดิมอีก 20-30 ปี Ants ช่วยให้บริษัทค่อย ๆ ยกระดับจากงาน manual ที่กระจายหลายช่องทาง ไปสู่ระบบที่ฉลาดขึ้น ปลอดภัยขึ้น และควบคุมได้มากขึ้น โดยไม่ต้องเปลี่ยนทุกอย่างในวันเดียว</p>
+            </article>
+            <article class="about-card">
+              <h3 data-i18n="about.dataTitle">เราเข้าใจว่าต้นทุนคือความลับ</h3>
+              <p data-i18n="about.dataBody">ต้นทุน Provider เงื่อนไขราคา และความสัมพันธ์กับสายเรือ เอเยนต์ สายการบิน หรือ Co-loader เป็นข้อมูลสำคัญของแต่ละบริษัท Ants จึงให้ความสำคัญกับสิทธิ์ผู้ใช้ การแยกข้อมูล และการควบคุมการมองเห็นต้นทุนตั้งแต่ระดับออกแบบระบบ</p>
+            </article>
+          </div>
+
+          <div class="about-workflow">
+            <h3 data-i18n-html="about.workflowTitle">ครอบคลุม<span class="gradient-text">ทุกขั้นตอน</span>ของงาน Freight</h3>
+            <div class="about-steps">
+              <div class="about-step"><div class="about-step-icon">$</div><b data-i18n="about.step1Title">ขอราคา & ต้นทุน</b><span data-i18n="about.step1Body">รวบรวมราคาและต้นทุนจาก Provider อย่างปลอดภัย</span></div>
+              <div class="about-step"><div class="about-step-icon">J</div><b data-i18n="about.step2Title">เปิด Job Order</b><span data-i18n="about.step2Body">สร้างงานและส่งต่อข้อมูลไปยังทีมที่เกี่ยวข้อง</span></div>
+              <div class="about-step"><div class="about-step-icon">D</div><b data-i18n="about.step3Title">เอกสาร & CS</b><span data-i18n="about.step3Body">อ่าน ตรวจ แยกเอกสาร และติดตามสถานะงาน</span></div>
+              <div class="about-step"><div class="about-step-icon">C</div><b data-i18n="about.step4Title">พิธีการศุลกากร</b><span data-i18n="about.step4Body">ตรวจพิกัด ทำ Draft ใบขน SI, VGM, B/L, D/O</span></div>
+              <div class="about-step"><div class="about-step-icon">P</div><b data-i18n="about.step5Title">ตั้งเบิก & จ่ายเงิน</b><span data-i18n="about.step5Body">ตั้งเบิก อนุมัติ จ่ายเงิน และควบคุมงบประมาณ</span></div>
+              <div class="about-step"><div class="about-step-icon">B</div><b data-i18n="about.step6Title">วางบิล & เก็บเงิน</b><span data-i18n="about.step6Body">วางบิล เก็บเช็ค รับชำระ Debit/Credit Note</span></div>
+              <div class="about-step"><div class="about-step-icon">G</div><b data-i18n="about.step7Title">บัญชี & หน่วยงานรัฐ</b><span data-i18n="about.step7Body">เชื่อมบัญชี HR และเตรียมข้อมูลส่งหน่วยงานรัฐ</span></div>
+            </div>
+          </div>
+
+          <div class="about-bottom-principles">
+            <div class="about-bottom-title" data-i18n-html="about.principlesTitle">หลักการของเรา<small>OUR PRINCIPLES</small></div>
+            <div class="about-bottom-item"><div class="about-bottom-dot">H</div><div><b data-i18n="about.p1Title">Human in Control</b><span data-i18n="about.p1Body">คนตัดสินใจในจุดสำคัญเสมอ</span></div></div>
+            <div class="about-bottom-item"><div class="about-bottom-dot">A</div><div><b data-i18n="about.p2Title">AI as Assistant</b><span data-i18n="about.p2Body">Freight Ai Agent ช่วยเตรียม ตรวจ และจัดงาน</span></div></div>
+            <div class="about-bottom-item"><div class="about-bottom-dot">D</div><div><b data-i18n="about.p3Title">Data Confidentiality</b><span data-i18n="about.p3Body">ต้นทุนและข้อมูลธุรกิจปลอดภัย</span></div></div>
+            <div class="about-bottom-item"><div class="about-bottom-dot">S</div><div><b data-i18n="about.p4Title">One Source of Truth</b><span data-i18n="about.p4Body">ข้อมูลเดียวกันทั้งองค์กร</span></div></div>
+            <div class="about-bottom-item"><div class="about-bottom-dot">T</div><div><b data-i18n="about.p5Title">Audit & Traceability</b><span data-i18n="about.p5Body">ตรวจสอบได้ทุกขั้นตอน</span></div></div>
+          </div>
+
+          <div class="about-cta">
+            <p data-i18n="about.ctaText">เริ่มจากงานจริง 1 ลูป แล้วดูว่า Ants ลดงานซ้ำและเพิ่มการควบคุมให้ทีมคุณได้ตรงไหน</p>
+            <a class="btn main" href="https://antnest.ai/" target="_blank"><span data-i18n="about.ctaButton">ทดลองใช้จริงฟรี</span> <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>Agentic AI Freight System · antnest.ai · Facebook / LINE / Instagram · Trial campaign for Thai Freight & Logistics teams</footer>
+  </div>
+  <script>
+    const translations = {
+      th: {
+        "nav.home": "Home",
+        "nav.solutions": "Solutions",
+        "nav.features": "Features",
+        "nav.integrations": "Integrations",
+        "nav.resources": "Resources",
+        "nav.pricing": "Pricing",
+        "nav.about": "About Us",
+        "nav.login": "Login",
+        "nav.trial": "ทดลองใช้ฟรี",
+        "hero.title": "ระบบ Agentic AI Freight System<br><span class=\"gradient-text\">สำหรับ Document Ai Agent</span>",
+        "hero.lead": "Ants ช่วยอ่านเอกสาร ตรวจข้อมูล แยกงานอัตโนมัติ และส่งต่อให้ทีมควบคุมงาน Freight ได้ในที่เดียว",
+        "hero.cta": "ทดลองใช้ฟรี 1,000 Credits",
+        "stats.rework": "ลดงานซ้ำ",
+        "stats.docs": "ประมวลผลเอกสาร",
+        "stats.docsValue": "12-15 <small>ฉบับ/Shipment</small>",
+        "stats.speed": "ทำงานเร็วขึ้น",
+        "stats.speedValue": "5 เท่า",
+        "features.title": "<span>Ants</span> ครอบคลุม<br>ทุกงาน Freight",
+        "features.document": "อ่านเอกสารอัตโนมัติ",
+        "features.discrepancy": "ตรวจสอบความถูกต้อง",
+        "features.hs": "ตรวจพิกัดและใบอนุญาต",
+        "features.cost": "ควบคุมค่าใช้จ่าย",
+        "features.dashboard": "เห็นภาพรวมแบบเรียลไทม์",
+        "features.security": "ปลอดภัย มีหลักฐานข้อมูล",
+        "download.title": "ดาวน์โหลดและเริ่มใช้ ANT",
+        "download.lead": "สแกน QR เพื่อเข้าใช้งาน APP, Web App และ ANT Care",
+        "promo.title": "โปรโมชันพิเศษ<br>รับฟรี!",
+        "promo.loop": "ใช้งานครบลูปแรก<br>รับคืนเพิ่ม",
+        "proof.title": "หลักฐานและความน่าเชื่อถือ",
+        "proof.owner": "ใช้เฉพาะเคสที่เจ้าของอนุมัติแล้ว",
+        "proof.audit": "บันทึกที่มาและผลลัพธ์ของงานเอกสาร",
+        "proof.security": "แสดงมาตรฐานจริงเมื่อมีหลักฐานยืนยัน",
+        "about.title": "Ants เกิดจากความเข้าใจจริง<br><span class=\"gradient-text\">ในงาน Freight</span>",
+        "about.lead": "Ants คือ Agentic AI Freight System ที่ออกแบบจากประสบการณ์จริงในธุรกิจ Freight Forwarder ตั้งแต่ปี 2545 ร่วมกับทีมผู้เชี่ยวชาญด้านซอฟต์แวร์และ Freight Ai Agent เพื่อเปลี่ยนงานฟเรทที่กระจัดกระจาย ให้กลับมาอยู่ในระบบเดียวที่ควบคุมได้ ตรวจสอบได้ และทำงานต่อกันได้จริง",
+        "about.chip1": "Freight Ai Agent อ่าน ตรวจ และจัดระเบียบงาน",
+        "about.chip2": "Human Approval ควบคุมทุกจุดสำคัญ",
+        "about.chip3": "Audit Trail ตรวจสอบย้อนหลังได้",
+        "about.metric1": "ประสบการณ์จริงในธุรกิจ Freight",
+        "about.metric2": "เป้าหมายลดงานซ้ำและเวลาที่ไม่จำเป็น",
+        "about.metric3": "ให้คนตรวจและอนุมัติก่อนจุดสำคัญ",
+        "about.metric4": "เก็บหลักฐานและตรวจสอบย้อนหลังได้",
+        "about.storyTitle": "เราไม่ได้เริ่มจากคำว่า AI เราเริ่มจากคำว่า “งานมันกระจายเกินไป”",
+        "about.storyBody": "คนที่อยู่ในธุรกิจฟเรทจริงจะรู้ว่า ปัญหาที่ทำให้ทีมเหนื่อยไม่ใช่แค่ปริมาณงาน แต่คือข้อมูลสำคัญที่อยู่คนละที่ ราคาอยู่คนละไฟล์ เอกสารอยู่คนละอีเมล สถานะงานอยู่ใน LINE และหลายแผนกยังต้องพิมพ์ข้อมูลซ้ำจากจุดเริ่มต้น Ants ถูกออกแบบจากความจริงเหล่านี้ ไม่ใช่จากทฤษฎีของซอฟต์แวร์ทั่วไป",
+        "about.whyTitle": "ทำไมต้องสร้าง Ants",
+        "about.whyBody": "เพราะธุรกิจฟเรทไม่ควรถูกทิ้งไว้กับระบบเดิมอีก 20-30 ปี Ants ช่วยให้บริษัทค่อย ๆ ยกระดับจากงาน manual ที่กระจายหลายช่องทาง ไปสู่ระบบที่ฉลาดขึ้น ปลอดภัยขึ้น และควบคุมได้มากขึ้น โดยไม่ต้องเปลี่ยนทุกอย่างในวันเดียว",
+        "about.dataTitle": "เราเข้าใจว่าต้นทุนคือความลับ",
+        "about.dataBody": "ต้นทุน Provider เงื่อนไขราคา และความสัมพันธ์กับสายเรือ เอเยนต์ สายการบิน หรือ Co-loader เป็นข้อมูลสำคัญของแต่ละบริษัท Ants จึงให้ความสำคัญกับสิทธิ์ผู้ใช้ การแยกข้อมูล และการควบคุมการมองเห็นต้นทุนตั้งแต่ระดับออกแบบระบบ",
+        "about.workflowTitle": "ครอบคลุม<span class=\"gradient-text\">ทุกขั้นตอน</span>ของงาน Freight",
+        "about.step1Title": "ขอราคา & ต้นทุน",
+        "about.step1Body": "รวบรวมราคาและต้นทุนจาก Provider อย่างปลอดภัย",
+        "about.step2Title": "เปิด Job Order",
+        "about.step2Body": "สร้างงานและส่งต่อข้อมูลไปยังทีมที่เกี่ยวข้อง",
+        "about.step3Title": "เอกสาร & CS",
+        "about.step3Body": "อ่าน ตรวจ แยกเอกสาร และติดตามสถานะงาน",
+        "about.step4Title": "พิธีการศุลกากร",
+        "about.step4Body": "ตรวจพิกัด ทำ Draft ใบขน SI, VGM, B/L, D/O",
+        "about.step5Title": "ตั้งเบิก & จ่ายเงิน",
+        "about.step5Body": "ตั้งเบิก อนุมัติ จ่ายเงิน และควบคุมงบประมาณ",
+        "about.step6Title": "วางบิล & เก็บเงิน",
+        "about.step6Body": "วางบิล เก็บเช็ค รับชำระ Debit/Credit Note",
+        "about.step7Title": "บัญชี & หน่วยงานรัฐ",
+        "about.step7Body": "เชื่อมบัญชี HR และเตรียมข้อมูลส่งหน่วยงานรัฐ",
+        "about.principlesTitle": "หลักการของเรา<small>OUR PRINCIPLES</small>",
+        "about.p1Title": "Human in Control",
+        "about.p1Body": "คนตัดสินใจในจุดสำคัญเสมอ",
+        "about.p2Title": "AI as Assistant",
+        "about.p2Body": "Freight Ai Agent ช่วยเตรียม ตรวจ และจัดงาน",
+        "about.p3Title": "Data Confidentiality",
+        "about.p3Body": "ต้นทุนและข้อมูลธุรกิจปลอดภัย",
+        "about.p4Title": "One Source of Truth",
+        "about.p4Body": "ข้อมูลเดียวกันทั้งองค์กร",
+        "about.p5Title": "Audit & Traceability",
+        "about.p5Body": "ตรวจสอบได้ทุกขั้นตอน",
+        "about.ctaText": "เริ่มจากงานจริง 1 ลูป แล้วดูว่า Ants ลดงานซ้ำและเพิ่มการควบคุมให้ทีมคุณได้ตรงไหน",
+        "about.ctaButton": "ทดลองใช้จริงฟรี"
+      },
+      en: {
+        "nav.home": "Home",
+        "nav.solutions": "Solutions",
+        "nav.features": "Features",
+        "nav.integrations": "Integrations",
+        "nav.resources": "Resources",
+        "nav.pricing": "Pricing",
+        "nav.about": "About Us",
+        "nav.login": "Login",
+        "nav.trial": "Start free",
+        "hero.title": "Agentic AI Freight System<br><span class=\"gradient-text\">for Document Ai Agent</span>",
+        "hero.lead": "Ants helps read documents, verify data, organize work automatically, and hand tasks to freight teams in one controlled system.",
+        "hero.cta": "Start free with 1,000 Credits",
+        "stats.rework": "Reduce rework",
+        "stats.docs": "Document processing",
+        "stats.docsValue": "12-15 <small>docs/Shipment</small>",
+        "stats.speed": "Work faster",
+        "stats.speedValue": "5x",
+        "features.title": "<span>Ants</span> covers<br>freight work",
+        "features.document": "Automated document reading",
+        "features.discrepancy": "Data accuracy checks",
+        "features.hs": "HS code and permit checks",
+        "features.cost": "Cost visibility control",
+        "features.dashboard": "Real-time operation view",
+        "features.security": "Secure evidence control",
+        "download.title": "Download and start using ANT",
+        "download.lead": "Scan QR codes for the app, web app, and ANT Care.",
+        "promo.title": "Special promotion<br>free trial",
+        "promo.loop": "Complete your first loop<br>get more back",
+        "proof.title": "Proof and trust",
+        "proof.owner": "Only owner-approved cases are used.",
+        "proof.audit": "Source and output history are recorded.",
+        "proof.security": "Security claims appear only with evidence.",
+        "about.title": "Ants was born from real<br><span class=\"gradient-text\">freight experience</span>",
+        "about.lead": "Ants is an Agentic AI Freight System designed from real freight-forwarding experience dating back to 2002, together with software and Freight Ai Agent specialists, to turn fragmented freight work into one controlled, auditable operating system.",
+        "about.chip1": "Freight Ai Agent reads, checks, and organizes work.",
+        "about.chip2": "Human Approval controls critical decisions.",
+        "about.chip3": "Audit Trail keeps every key step traceable.",
+        "about.metric1": "Real freight operation experience.",
+        "about.metric2": "Target reduction in repetitive and unnecessary work.",
+        "about.metric3": "Human review before critical action.",
+        "about.metric4": "Evidence and traceability by design.",
+        "about.storyTitle": "We did not start with AI. We started with scattered work.",
+        "about.storyBody": "Anyone who has worked inside freight forwarding knows the real issue is not only workload. Critical information lives in different places: rates in separate files, documents in email, job status in chat, and repeated key-in across departments. Ants is designed from this operational reality, not from generic software theory.",
+        "about.whyTitle": "Why we built Ants",
+        "about.whyBody": "Freight companies should not be left with 20-30 year old workflows. Ants helps teams gradually move from scattered manual work to a smarter, safer, and more controlled system without replacing everything overnight.",
+        "about.dataTitle": "We understand cost confidentiality",
+        "about.dataBody": "Provider costs, pricing terms, shipping line relationships, agents, airlines, and co-loader conditions are sensitive company information. Ants is designed around user permissions, company-level data separation, and cost visibility control.",
+        "about.workflowTitle": "Covering <span class=\"gradient-text\">every step</span> of freight work",
+        "about.step1Title": "Rates & Costs",
+        "about.step1Body": "Collect provider rates and costs safely.",
+        "about.step2Title": "Job Order",
+        "about.step2Body": "Create jobs and hand data to the right teams.",
+        "about.step3Title": "Documents & CS",
+        "about.step3Body": "Read, check, organize documents, and track status.",
+        "about.step4Title": "Customs Process",
+        "about.step4Body": "Support HS review, draft declaration, SI, VGM, B/L, D/O.",
+        "about.step5Title": "Disbursement & Payment",
+        "about.step5Body": "Request, approve, pay, and control budget.",
+        "about.step6Title": "Billing & Collection",
+        "about.step6Body": "Invoice, collect, and manage Debit/Credit Notes.",
+        "about.step7Title": "Accounting & Authorities",
+        "about.step7Body": "Support accounting, HR, and government reporting.",
+        "about.principlesTitle": "Our Principles<small>OUR PRINCIPLES</small>",
+        "about.p1Title": "Human in Control",
+        "about.p1Body": "People decide at critical points.",
+        "about.p2Title": "AI as Assistant",
+        "about.p2Body": "Freight Ai Agent prepares, checks, and organizes.",
+        "about.p3Title": "Data Confidentiality",
+        "about.p3Body": "Costs and business data stay protected.",
+        "about.p4Title": "One Source of Truth",
+        "about.p4Body": "Every team works from the same truth.",
+        "about.p5Title": "Audit & Traceability",
+        "about.p5Body": "Every key step can be reviewed.",
+        "about.ctaText": "Start with one real work loop and see where Ants can reduce repetitive work and improve control for your team.",
+        "about.ctaButton": "Start free trial"
+      }
+    };
+
+    function setLanguage(lang) {
+      const copy = translations[lang] || translations.th;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((node) => {
+        const key = node.getAttribute("data-i18n");
+        if (copy[key]) node.textContent = copy[key];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((node) => {
+        const key = node.getAttribute("data-i18n-html");
+        if (copy[key]) node.innerHTML = copy[key];
+      });
+      document.querySelectorAll(".lang-switch button").forEach((button) => {
+        button.classList.toggle("active", button.dataset.lang === lang);
+      });
+      localStorage.setItem("antsLang", lang);
+    }
+
+    document.querySelectorAll(".lang-switch button").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.lang));
+    });
+    const requestedLang = new URLSearchParams(window.location.search).get("lang");
+    setLanguage(requestedLang === "en" || requestedLang === "th" ? requestedLang : (localStorage.getItem("antsLang") || "th"));
+  </script>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Us | Ants Agentic AI Freight System</title>
+  <style>
+    :root{
+      --ink:#111a38;
+      --muted:#5d6b86;
+      --blue:#377dff;
+      --purple:#8b5cf6;
+      --line:#dbe6ff;
+      --soft:#f7fbff;
+      --shadow:0 24px 70px rgba(45,78,165,.12);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(135deg,#fff 0%,#f7fbff 50%,#f1ebff 100%);min-height:100vh}
+    body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 78% 4%,rgba(139,92,246,.16),transparent 28%),radial-gradient(circle at 8% 22%,rgba(59,130,246,.12),transparent 26%);pointer-events:none}
+    a{text-decoration:none;color:inherit}
+    .page{position:relative;z-index:1;max-width:1536px;margin:0 auto;min-height:100vh;padding-bottom:24px}
+    .nav{height:68px;border-bottom:1px solid rgba(174,194,237,.65);background:rgba(255,255,255,.74);backdrop-filter:blur(20px);position:sticky;top:0;z-index:20}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:space-between;padding:0 46px;gap:24px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:260px}
+    .brand img{width:48px;height:48px;border-radius:10px;object-fit:cover}
+    .brand span{font-size:13px;font-weight:950;letter-spacing:.02em}
+    .menu{display:flex;align-items:center;gap:30px;font-size:13px;font-weight:850;color:#162243}
+    .menu a{opacity:.92}
+    .menu a.active{color:#2f65ff}
+    .actions{display:flex;align-items:center;gap:12px}
+    .lang-switch{height:40px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.76);display:flex;align-items:center;padding:3px;gap:3px}
+    .lang-switch button{height:32px;border:0;border-radius:9px;background:transparent;color:#1f3272;font-weight:950;font-size:12px;padding:0 10px;cursor:pointer}
+    .lang-switch button.active{color:#fff;background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 8px 18px rgba(85,104,255,.18)}
+    .pill{height:40px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.78);padding:0 18px;font-size:13px;font-weight:900;color:#213059}
+    .pill.primary{color:#fff;border:0;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 14px 32px rgba(87,103,239,.22)}
+    .about{padding:28px 46px 0}
+    .shell{border:1px solid var(--line);border-radius:28px;background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(246,250,255,.86) 55%,rgba(246,239,255,.76));box-shadow:var(--shadow);overflow:hidden;position:relative;padding:34px 46px 28px}
+    .shell:before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(255,255,255,.96) 0%,rgba(255,255,255,.76) 38%,rgba(255,255,255,.08) 72%),url("assets/hero-ai-logistics-wide-1920x1080.png");background-size:cover;background-position:center right;opacity:.9}
+    .shell:after{content:"";position:absolute;inset:auto 0 0 0;height:180px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.72))}
+    .content{position:relative;z-index:2}
+    .hero{display:grid;grid-template-columns:1.04fr .96fr;gap:28px;min-height:430px;align-items:start}
+    .kicker{font-size:13px;letter-spacing:.14em;font-weight:950;color:#142345;text-transform:uppercase;margin:6px 0 18px}
+    h1{font-size:58px;line-height:1.04;letter-spacing:-.055em;margin:0 0 18px;max-width:720px}
+    .gradient{background:linear-gradient(135deg,#2f80ff,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{font-size:20px;line-height:1.55;color:#445474;font-weight:720;max-width:770px;margin:0 0 16px}
+    .body-copy{font-size:15px;line-height:1.82;color:#33415f;max-width:690px;margin:0}
+    .visual{position:relative;min-height:430px}
+    .model{position:absolute;right:44px;bottom:-58px;height:520px;width:auto;filter:drop-shadow(0 30px 48px rgba(71,81,165,.15))}
+    .float-card{position:absolute;width:170px;border:1px solid rgba(93,140,255,.2);border-radius:14px;background:rgba(255,255,255,.68);backdrop-filter:blur(16px);box-shadow:0 20px 48px rgba(62,91,177,.1);padding:12px 14px;color:#234070}
+    .float-card b{display:block;color:#3478ff;font-size:13px;margin-bottom:8px}
+    .float-card span{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;line-height:1.4;margin-top:5px}
+    .float-card em{font-style:normal;color:#11214a;font-weight:900}
+    .float-a{left:6px;top:94px}
+    .float-b{left:6px;top:218px}
+    .float-c{right:0;top:172px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:4px 0 28px;max-width:870px}
+    .metric{min-height:88px;border:1px solid rgba(211,224,255,.8);background:rgba(255,255,255,.75);backdrop-filter:blur(18px);padding:14px 18px;display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;box-shadow:0 18px 38px rgba(45,78,165,.08)}
+    .metric:first-child{border-radius:18px 0 0 18px}
+    .metric:last-child{border-radius:0 18px 18px 0}
+    .metric-icon{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:950;background:linear-gradient(135deg,#3b82f6,#8b5cf6);box-shadow:0 14px 28px rgba(87,103,239,.22)}
+    .metric b{display:block;font-size:28px;line-height:1;color:#2563eb;letter-spacing:-.05em}
+    .metric span{display:block;font-size:12px;color:#1f2e56;font-weight:850;line-height:1.35;margin-top:4px}
+    .workflow{border:1px solid rgba(211,224,255,.88);border-radius:22px;background:rgba(255,255,255,.78);backdrop-filter:blur(18px);box-shadow:0 18px 48px rgba(45,78,165,.08);padding:18px 20px 16px}
+    .workflow h2{text-align:center;font-size:30px;line-height:1.1;margin:0 0 18px;letter-spacing:-.04em}
+    .steps{display:grid;grid-template-columns:repeat(7,1fr)}
+    .step{min-height:145px;padding:12px 16px 10px;border-right:1px solid rgba(180,200,240,.72);position:relative}
+    .step:last-child{border-right:0}
+    .step:after{content:"›";position:absolute;right:-8px;top:34px;color:#9a7cff;font-size:34px;font-weight:300}
+    .step:last-child:after{display:none}
+    .step-icon{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.16));border:1px solid rgba(85,116,255,.16);display:flex;align-items:center;justify-content:center;color:#526bff;font-weight:950;margin-bottom:10px}
+    .step b{display:block;font-size:14px;line-height:1.25;color:#111a38;margin-bottom:7px}
+    .step span{display:block;font-size:12px;line-height:1.55;color:#455674}
+    .principles{display:grid;grid-template-columns:1.08fr repeat(5,1fr);margin-top:18px;border:1px solid rgba(211,224,255,.88);border-radius:18px;background:rgba(255,255,255,.82);overflow:hidden}
+    .principle-title,.principle{min-height:70px;padding:13px 16px;display:flex;align-items:center;gap:10px;border-right:1px solid rgba(180,200,240,.72)}
+    .principle:last-child{border-right:0}
+    .principle-title{font-weight:950;line-height:1.12}
+    .principle-title small{display:block;color:#3b82f6;letter-spacing:.08em;margin-top:4px}
+    .dot{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.14));display:flex;align-items:center;justify-content:center;color:#526bff;font-weight:950;flex:0 0 auto}
+    .principle b{display:block;font-size:12px;color:#111a38;margin-bottom:2px}
+    .principle span{display:block;font-size:11px;color:#5a6a86;line-height:1.35}
+    .cta-row{display:flex;justify-content:center;gap:14px;margin-top:18px}
+    @media(max-width:1180px){
+      .menu{display:none}.brand{min-width:auto}.hero{grid-template-columns:1fr}.visual{min-height:340px}.model{right:50%;transform:translateX(50%);height:420px}.float-a{left:12px;top:40px}.float-b{left:12px;top:160px}.float-c{right:12px;top:120px}.metrics{grid-template-columns:repeat(2,1fr);max-width:none}.metric:first-child{border-radius:18px 0 0 0}.metric:nth-child(2){border-radius:0 18px 0 0}.metric:nth-child(3){border-radius:0 0 0 18px}.metric:last-child{border-radius:0 0 18px 0}.steps{grid-template-columns:repeat(2,1fr)}.step{border-right:0;border-bottom:1px solid rgba(180,200,240,.72)}.step:after{display:none}.principles{grid-template-columns:1fr}.principle-title,.principle{border-right:0;border-bottom:1px solid rgba(180,200,240,.72)}
+    }
+    @media(max-width:680px){
+      .nav-inner{padding:0 16px}.actions .pill{display:none}.about{padding:16px}.shell{padding:22px 16px;border-radius:20px}h1{font-size:38px}.lead{font-size:17px}.body-copy{font-size:14px}.visual{display:none}.metrics{grid-template-columns:1fr}.metric,.metric:first-child,.metric:nth-child(2),.metric:nth-child(3),.metric:last-child{border-radius:16px}.steps{grid-template-columns:1fr}.cta-row{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">
+          <img src="assets/ant-logo-master.png" alt="ANT logo">
+          <span>Agentic AI Freight System</span>
+        </a>
+        <div class="menu">
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="solutions.html" data-i18n="nav.solutions">Solutions</a>
+          <a href="features.html" data-i18n="nav.features">Features</a>
+          <a href="integrations.html" data-i18n="nav.integrations">Integrations</a>
+          <a href="resources.html" data-i18n="nav.resources">Resources</a>
+          <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+          <a class="active" href="about.html" data-i18n="nav.about">About Us</a>
+        </div>
+        <div class="actions">
+          <div class="lang-switch" aria-label="Language">
+            <button type="button" class="active" data-lang="th">TH</button>
+            <button type="button" data-lang="en">EN</button>
+          </div>
+          <a class="pill" href="https://antnest.ai/" target="_blank" data-i18n="nav.login">Login</a>
+          <a class="pill primary" href="https://antnest.ai/" target="_blank" data-i18n="nav.trial">ทดลองใช้ฟรี</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="about">
+      <section class="shell">
+        <div class="content">
+          <div class="hero">
+            <div>
+              <div class="kicker">ABOUT US</div>
+              <h1 data-i18n-html="about.title">Ants เกิดจากความเข้าใจจริง<br>ในงาน<span class="gradient">ฟเรท</span></h1>
+              <p class="lead" data-i18n="about.lead">Ants คือ Agentic AI Freight System ที่ออกแบบจากประสบการณ์จริงในธุรกิจ Freight Forwarder ตั้งแต่ปี 2545 ร่วมกับผู้เชี่ยวชาญด้านซอฟต์แวร์และ Freight Ai Agent</p>
+              <p class="body-copy" data-i18n="about.body">เราเข้าใจว่าธุรกิจฟเรทโตเร็ว แต่ระบบการทำงานจำนวนมากยังเหมือนเดิม เอกสารกระจาย ข้อมูลอยู่หลายที่ งานซ้ำเกิดทุกวัน และผู้บริหารมองปัญหาไม่ทันเวลา Ants จึงถูกสร้างขึ้นเพื่อเปลี่ยนงานฟเรทที่กระจัดกระจาย ให้เป็นระบบเดียวที่ควบคุมได้ ตรวจสอบได้ และทำงานต่อกันได้จริง</p>
+            </div>
+            <div class="visual" aria-label="AI logistics visual">
+              <img class="model" src="assets/hero-ai-model-approved-portrait.png" alt="">
+              <div class="float-card float-a">
+                <b>AI Freight Agent</b>
+                <span>Extract Documents <em>✓</em></span>
+                <span>Validate & Check <em>✓</em></span>
+                <span>Organize Work <em>✓</em></span>
+              </div>
+              <div class="float-card float-b">
+                <b>Job Overview</b>
+                <span>In Progress <em>24</em></span>
+                <span>Completed <em>156</em></span>
+              </div>
+              <div class="float-card float-c">
+                <b>Shipment Status</b>
+                <span>Import <em>68</em></span>
+                <span>Export <em>42</em></span>
+                <span>Customs <em>35</em></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="metrics">
+            <div class="metric"><div class="metric-icon">20+</div><div><b>20+ ปี</b><span data-i18n="metric.years">ประสบการณ์จริงในธุรกิจฟเรท</span></div></div>
+            <div class="metric"><div class="metric-icon">80%</div><div><b>80%</b><span data-i18n="metric.reduce">ลดงานซ้ำ เพิ่มประสิทธิภาพทีมงาน</span></div></div>
+            <div class="metric"><div class="metric-icon">QA</div><div><b>Human</b><span data-i18n="metric.human">ให้คนอนุมัติในจุดสำคัญ</span></div></div>
+            <div class="metric"><div class="metric-icon">AT</div><div><b>Audit</b><span data-i18n="metric.audit">ตรวจสอบหลักฐานได้ทุกขั้นตอน</span></div></div>
+          </div>
+
+          <div class="workflow">
+            <h2 data-i18n-html="workflow.title">ครอบคลุม<span class="gradient">ทุกขั้นตอน</span>ของงานฟเรท</h2>
+            <div class="steps">
+              <div class="step"><div class="step-icon">$</div><b data-i18n="step1.title">ขอราคา & ต้นทุน</b><span data-i18n="step1.body">รวบรวมราคาและต้นทุนจากสายเรือ เอเยนต์ สายการบิน Co-loader และ Provider อย่างปลอดภัย</span></div>
+              <div class="step"><div class="step-icon">J</div><b data-i18n="step2.title">เปิด Job Order</b><span data-i18n="step2.body">สร้างงานและส่งต่อข้อมูลไปยังแผนกที่เกี่ยวข้องอัตโนมัติ ไม่ต้องพิมพ์ซ้ำ</span></div>
+              <div class="step"><div class="step-icon">D</div><b data-i18n="step3.title">เอกสาร & CS</b><span data-i18n="step3.body">Freight Ai Agent ช่วยอ่าน ตรวจ แยกเอกสาร จัดเก็บ และติดตามสถานะได้ทันที</span></div>
+              <div class="step"><div class="step-icon">C</div><b data-i18n="step4.title">พิธีการศุลกากร</b><span data-i18n="step4.body">ตรวจพิกัด ยื่นใบขน ทำ Draft, SI, VGM, B/L, D/O ขาเข้า-ขาออกครบวงจร</span></div>
+              <div class="step"><div class="step-icon">P</div><b data-i18n="step5.title">ตั้งเบิก & จ่ายเงิน</b><span data-i18n="step5.body">ตั้งเบิก อนุมัติ จ่ายเงิน ควบคุมงบประมาณ ปลอดภัย โปร่งใส ตรวจสอบได้</span></div>
+              <div class="step"><div class="step-icon">B</div><b data-i18n="step6.title">วางบิล & เก็บเงิน</b><span data-i18n="step6.body">วางบิล ออกใบเสร็จ รับชำระ Debit/Credit Note ทั้งในและต่างประเทศในระบบเดียว</span></div>
+              <div class="step"><div class="step-icon">G</div><b data-i18n="step7.title">บัญชี & หน่วยงานรัฐ</b><span data-i18n="step7.body">เชื่อมต่อ HR บัญชี ปิดงบ พร้อมส่งข้อมูลให้หน่วยงานรัฐ เช่น กรมศุลกากร อย. สมอ.</span></div>
+            </div>
+          </div>
+
+          <div class="principles">
+            <div class="principle-title" data-i18n-html="principles.title">หลักการของเรา<small>OUR PRINCIPLES</small></div>
+            <div class="principle"><div class="dot">H</div><div><b data-i18n="p1.title">Human in Control</b><span data-i18n="p1.body">คนตัดสินใจในจุดสำคัญเสมอ</span></div></div>
+            <div class="principle"><div class="dot">A</div><div><b data-i18n="p2.title">AI as Assistant</b><span data-i18n="p2.body">Freight Ai Agent ช่วยเตรียม ตรวจ และจัดงาน</span></div></div>
+            <div class="principle"><div class="dot">D</div><div><b data-i18n="p3.title">Data Confidentiality</b><span data-i18n="p3.body">ต้นทุนและข้อมูลธุรกิจปลอดภัย</span></div></div>
+            <div class="principle"><div class="dot">S</div><div><b data-i18n="p4.title">One Source of Truth</b><span data-i18n="p4.body">ข้อมูลเดียวกันทั้งองค์กร</span></div></div>
+            <div class="principle"><div class="dot">T</div><div><b data-i18n="p5.title">Audit & Traceability</b><span data-i18n="p5.body">ตรวจสอบได้ทุกขั้นตอน</span></div></div>
+          </div>
+
+          <div class="cta-row">
+            <a class="pill primary" href="https://antnest.ai/" target="_blank" data-i18n="cta.trial">ทดลองใช้จริงฟรี 1,000 Credits</a>
+            <a class="pill" href="index.html" data-i18n="cta.home">กลับหน้าแรก</a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const translations = {
+      th: {
+        "nav.home":"Home","nav.solutions":"Solutions","nav.features":"Features","nav.integrations":"Integrations","nav.resources":"Resources","nav.pricing":"Pricing","nav.about":"About Us","nav.login":"Login","nav.trial":"ทดลองใช้ฟรี",
+        "about.title":"Ants เกิดจากความเข้าใจจริง<br>ในงาน<span class=\"gradient\">ฟเรท</span>",
+        "about.lead":"Ants คือ Agentic AI Freight System ที่ออกแบบจากประสบการณ์จริงในธุรกิจ Freight Forwarder ตั้งแต่ปี 2545 ร่วมกับผู้เชี่ยวชาญด้านซอฟต์แวร์และ Freight Ai Agent",
+        "about.body":"เราเข้าใจว่าธุรกิจฟเรทโตเร็ว แต่ระบบการทำงานจำนวนมากยังเหมือนเดิม เอกสารกระจาย ข้อมูลอยู่หลายที่ งานซ้ำเกิดทุกวัน และผู้บริหารมองปัญหาไม่ทันเวลา Ants จึงถูกสร้างขึ้นเพื่อเปลี่ยนงานฟเรทที่กระจัดกระจาย ให้เป็นระบบเดียวที่ควบคุมได้ ตรวจสอบได้ และทำงานต่อกันได้จริง",
+        "metric.years":"ประสบการณ์จริงในธุรกิจฟเรท","metric.reduce":"ลดงานซ้ำ เพิ่มประสิทธิภาพทีมงาน","metric.human":"ให้คนอนุมัติในจุดสำคัญ","metric.audit":"ตรวจสอบหลักฐานได้ทุกขั้นตอน",
+        "workflow.title":"ครอบคลุม<span class=\"gradient\">ทุกขั้นตอน</span>ของงานฟเรท",
+        "step1.title":"ขอราคา & ต้นทุน","step1.body":"รวบรวมราคาและต้นทุนจากสายเรือ เอเยนต์ สายการบิน Co-loader และ Provider อย่างปลอดภัย",
+        "step2.title":"เปิด Job Order","step2.body":"สร้างงานและส่งต่อข้อมูลไปยังแผนกที่เกี่ยวข้องอัตโนมัติ ไม่ต้องพิมพ์ซ้ำ",
+        "step3.title":"เอกสาร & CS","step3.body":"Freight Ai Agent ช่วยอ่าน ตรวจ แยกเอกสาร จัดเก็บ และติดตามสถานะได้ทันที",
+        "step4.title":"พิธีการศุลกากร","step4.body":"ตรวจพิกัด ยื่นใบขน ทำ Draft, SI, VGM, B/L, D/O ขาเข้า-ขาออกครบวงจร",
+        "step5.title":"ตั้งเบิก & จ่ายเงิน","step5.body":"ตั้งเบิก อนุมัติ จ่ายเงิน ควบคุมงบประมาณ ปลอดภัย โปร่งใส ตรวจสอบได้",
+        "step6.title":"วางบิล & เก็บเงิน","step6.body":"วางบิล ออกใบเสร็จ รับชำระ Debit/Credit Note ทั้งในและต่างประเทศในระบบเดียว",
+        "step7.title":"บัญชี & หน่วยงานรัฐ","step7.body":"เชื่อมต่อ HR บัญชี ปิดงบ พร้อมส่งข้อมูลให้หน่วยงานรัฐ เช่น กรมศุลกากร อย. สมอ.",
+        "principles.title":"หลักการของเรา<small>OUR PRINCIPLES</small>",
+        "p1.title":"Human in Control","p1.body":"คนตัดสินใจในจุดสำคัญเสมอ",
+        "p2.title":"AI as Assistant","p2.body":"Freight Ai Agent ช่วยเตรียม ตรวจ และจัดงาน",
+        "p3.title":"Data Confidentiality","p3.body":"ต้นทุนและข้อมูลธุรกิจปลอดภัย",
+        "p4.title":"One Source of Truth","p4.body":"ข้อมูลเดียวกันทั้งองค์กร",
+        "p5.title":"Audit & Traceability","p5.body":"ตรวจสอบได้ทุกขั้นตอน",
+        "cta.trial":"ทดลองใช้จริงฟรี 1,000 Credits","cta.home":"กลับหน้าแรก"
+      },
+      en: {
+        "nav.home":"Home","nav.solutions":"Solutions","nav.features":"Features","nav.integrations":"Integrations","nav.resources":"Resources","nav.pricing":"Pricing","nav.about":"About Us","nav.login":"Login","nav.trial":"Start free",
+        "about.title":"Ants was born from real<br><span class=\"gradient\">freight experience</span>",
+        "about.lead":"Ants is an Agentic AI Freight System designed from real freight-forwarding experience dating back to 2002, together with software and Freight Ai Agent specialists.",
+        "about.body":"We understand that freight businesses grow fast while many workflows stay the same. Documents are scattered, data lives in too many places, repeated work happens every day, and leaders see problems too late. Ants was built to turn fragmented freight work into one controlled, auditable operating system.",
+        "metric.years":"Real freight operation experience.","metric.reduce":"Reduce repetitive work and raise team efficiency.","metric.human":"Human approval at critical points.","metric.audit":"Evidence can be reviewed step by step.",
+        "workflow.title":"Covering <span class=\"gradient\">every step</span> of freight work",
+        "step1.title":"Rates & Costs","step1.body":"Collect provider rates and costs from carriers, agents, airlines, co-loaders, and providers safely.",
+        "step2.title":"Job Order","step2.body":"Create jobs and hand approved data to the right teams without repeated key-in.",
+        "step3.title":"Documents & CS","step3.body":"Freight Ai Agent helps read, check, separate, store, and track document status.",
+        "step4.title":"Customs Process","step4.body":"Support HS review, declaration draft, SI, VGM, B/L, D/O, import and export workflows.",
+        "step5.title":"Disbursement & Payment","step5.body":"Request, approve, pay, control budget, and keep payment evidence traceable.",
+        "step6.title":"Billing & Collection","step6.body":"Invoice, receipt, collect, and manage Debit/Credit Notes in one system.",
+        "step7.title":"Accounting & Authorities","step7.body":"Support HR, accounting, closing data, and government reporting workflows.",
+        "principles.title":"Our Principles<small>OUR PRINCIPLES</small>",
+        "p1.title":"Human in Control","p1.body":"People decide at critical points.",
+        "p2.title":"AI as Assistant","p2.body":"Freight Ai Agent prepares, checks, and organizes.",
+        "p3.title":"Data Confidentiality","p3.body":"Costs and business data stay protected.",
+        "p4.title":"One Source of Truth","p4.body":"Every team works from the same truth.",
+        "p5.title":"Audit & Traceability","p5.body":"Every key step can be reviewed.",
+        "cta.trial":"Start free with 1,000 Credits","cta.home":"Back to home"
+      }
+    };
+    function setLanguage(lang){
+      const copy=translations[lang]||translations.th;
+      document.documentElement.lang=lang;
+      document.querySelectorAll("[data-i18n]").forEach((node)=>{const key=node.getAttribute("data-i18n");if(copy[key])node.textContent=copy[key]});
+      document.querySelectorAll("[data-i18n-html]").forEach((node)=>{const key=node.getAttribute("data-i18n-html");if(copy[key])node.innerHTML=copy[key]});
+      document.querySelectorAll(".lang-switch button").forEach((button)=>button.classList.toggle("active",button.dataset.lang===lang));
+      localStorage.setItem("antsLang",lang);
+    }
+    document.querySelectorAll(".lang-switch button").forEach((button)=>button.addEventListener("click",()=>setLanguage(button.dataset.lang)));
+    const requestedLang=new URLSearchParams(window.location.search).get("lang");
+    setLanguage(requestedLang==="en"||requestedLang==="th"?requestedLang:(localStorage.getItem("antsLang")||"th"));
+  </script>
+</body>
+</html>
