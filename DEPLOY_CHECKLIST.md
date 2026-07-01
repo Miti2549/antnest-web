@@ -18,6 +18,7 @@
 ## Post-Deploy Smoke Test
 
 - [ ] `https://antnest.ai/` opens the new Ants website.
+- [ ] Login opens `https://antnest.ai/login.html` and does not loop back to the homepage.
 - [ ] `https://antnest.ai/pricing.html` opens and shows THB pricing.
 - [ ] `https://antnest.ai/about.html` opens and shows the updated About headline.
 - [ ] `https://antnest.ai/resources.html` opens and shows `ANT Contact Center 24 Hrs.`

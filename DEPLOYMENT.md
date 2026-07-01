@@ -58,6 +58,7 @@ The website uses direct static HTML routes. Confirm these URLs work after deploy
 /resources.html
 /pricing.html
 /about.html
+/login.html
 /feature-ai-document-reading.html
 /feature-hs-code-tax-check.html
 /feature-job-order-automation.html
@@ -91,16 +92,18 @@ assets/qr-ant-care-card-official.png
 
 1. Open the temporary Pages URL.
 2. Confirm the intro appears and Skip intro works.
-3. Confirm TH/EN switch works on Home, Pricing, Solutions, and About.
-4. Confirm Pricing shows:
+3. Confirm the Login button opens `/login.html` and does not loop back to the homepage.
+4. Confirm TH/EN switch works on Home, Pricing, Solutions, and About.
+5. Confirm Pricing shows:
    - `฿999 /เดือน`
    - `฿2,990 /เดือน`
    - `฿5,990 /เดือน`
-5. Confirm mobile layout loads and intro does not block the page.
-6. Confirm all route checklist URLs return `200`.
+6. Confirm mobile layout loads and intro does not block the page.
+7. Confirm all route checklist URLs return `200`.
 
 ## Notes
 
 - This deployment does not call paid APIs.
 - This deployment does not publish, broadcast, or mutate ads.
 - This deployment is frontend-only and can be rolled back by switching the hosting project back to the previous deployment.
+- App Login is not live yet. `/login.html` is a temporary bridge page. When the real app URL is ready, update `APP_LOGIN_URL` inside `login.html`.

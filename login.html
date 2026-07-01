@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Ants AI Freight Work OS</title>
+  <link rel="stylesheet" href="site-pages.css">
+  <style>
+    body{background:linear-gradient(135deg,#fff 0%,#f7fbff 52%,#f3efff 100%)}
+    .login-bridge{min-height:calc(100vh - 68px);display:grid;grid-template-columns:1.08fr .92fr;gap:16px;align-items:stretch}
+    .login-video{min-height:620px;border-radius:24px;overflow:hidden;background:#08143a;box-shadow:0 24px 70px rgba(45,78,165,.14)}
+    .login-video video{width:100%;height:100%;min-height:620px;object-fit:cover;display:block}
+    .login-copy{padding:54px;display:flex;flex-direction:column;justify-content:center}
+    .login-copy h1{font-size:50px;line-height:1.04;letter-spacing:-.06em;margin:0 0 18px;color:#101a38}
+    .login-copy p{font-size:17px;line-height:1.72;color:#35445f;margin:0 0 18px;max-width:680px}
+    .login-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;opacity:.45;transform:translateY(8px);transition:opacity .5s ease,transform .5s ease}
+    .login-actions.ready{opacity:1;transform:none}
+    .login-status{display:inline-flex;align-items:center;gap:10px;width:max-content;max-width:100%;border:1px solid rgba(55,125,255,.18);border-radius:999px;background:rgba(255,255,255,.8);padding:10px 14px;color:#2f65ff;font-size:13px;font-weight:950;margin-bottom:18px}
+    .login-status:before{content:"";width:9px;height:9px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 6px rgba(34,197,94,.1)}
+    .bridge-note{border:1px solid rgba(211,224,255,.8);border-radius:18px;background:rgba(255,255,255,.76);padding:16px 18px;color:#52627f;font-size:13px;line-height:1.6;margin-top:18px}
+    .pill.disabled{opacity:.62;pointer-events:none;filter:saturate(.7)}
+    @media (max-width:980px){
+      .login-bridge{grid-template-columns:1fr}
+      .login-video,.login-video video{min-height:420px}
+      .login-copy{padding:34px 24px}
+      .login-copy h1{font-size:38px}
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav"><div class="nav-inner">
+      <a class="brand" href="index.html"><img src="assets/ant-logo-master.png" alt="ANT logo"><span>Agentic AI Freight System</span></a>
+      <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="solutions.html">Solutions</a>
+        <a href="features.html">Features</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About Us</a>
+      </div>
+      <div class="actions"><a class="pill primary" href="index.html">กลับหน้าแรก</a></div>
+    </div></nav>
+
+    <main class="screen">
+      <section class="login-bridge">
+        <div class="panel login-video">
+          <video autoplay muted playsinline poster="assets/intro-poster-desktop.jpg" id="login-video">
+            <source src="assets/intro-mobile.webm" type="video/webm" media="(max-width: 700px)">
+            <source src="assets/intro-mobile.mp4" type="video/mp4" media="(max-width: 700px)">
+            <source src="assets/intro-desktop.webm" type="video/webm">
+            <source src="assets/intro-desktop.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="panel login-copy">
+          <div class="login-status">Freight Ai Agent is preparing your workspace.</div>
+          <h1>เข้าสู่ <span class="gradient">Ants App</span></h1>
+          <p>หน้านี้เป็นทางเข้าชั่วคราวระหว่างรอ App Login ตัวจริงขึ้น production เพื่อไม่ให้ปุ่ม Login วนกลับเว็บเดิมหลัง deploy</p>
+          <p>เมื่อระบบ App Login พร้อม Dev เปลี่ยน URL ในไฟล์นี้จุดเดียว แล้วปุ่มนี้จะพาเข้าสู่ระบบจริงทันที</p>
+
+          <div class="login-actions" id="login-actions">
+            <a class="pill primary disabled" id="app-login-link" href="#" aria-disabled="true">App Login กำลังเตรียมเปิด</a>
+            <a class="pill" href="https://line.me/R/ti/p/@antnestai" target="_blank">ทัก ANT Care</a>
+          </div>
+
+          <div class="bridge-note">
+            App Login URL ยังไม่ live ตอนนี้ จึงปิดปุ่มเข้าสู่ระบบจริงไว้ก่อนเพื่อกันผู้ใช้เจอหน้าเสียหรือวนกลับหน้าเดิม
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const APP_LOGIN_URL = "";
+    const actions = document.getElementById("login-actions");
+    const appLoginLink = document.getElementById("app-login-link");
+    const video = document.getElementById("login-video");
+
+    function revealLoginAction() {
+      actions.classList.add("ready");
+      if (APP_LOGIN_URL) {
+        appLoginLink.href = APP_LOGIN_URL;
+        appLoginLink.classList.remove("disabled");
+        appLoginLink.removeAttribute("aria-disabled");
+        appLoginLink.textContent = "เข้าสู่ App Login";
+      }
+    }
+
+    video.addEventListener("ended", revealLoginAction);
+    window.setTimeout(revealLoginAction, 6500);
+  </script>
+</body>
+</html>
