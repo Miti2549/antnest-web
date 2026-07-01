@@ -37,6 +37,8 @@ a{text-decoration:none;color:inherit}
 .copy{padding:54px 56px 42px;display:flex;flex-direction:column;justify-content:center}
 .eyebrow{font-size:22px;font-weight:950;letter-spacing:.02em;margin:0 0 18px;color:#121b39;text-transform:uppercase}
 .copy h1{font-size:38px;line-height:1.12;letter-spacing:-.045em;margin:0 0 18px}
+.copy h1.solution-title{font-size:34px;line-height:1.08;letter-spacing:-.035em}
+.copy h1.solution-title .gradient{display:inline-block;font-size:.84em;line-height:1.14}
 .copy p{font-size:17px;line-height:1.72;color:#33415f;margin:0 0 22px;max-width:640px}
 .gradient{background:linear-gradient(135deg,#2f80ff,#8b5cf6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:8px}
@@ -348,4 +350,9 @@ a{text-decoration:none;color:inherit}
   .bar-chart{height:150px;gap:9px}
   .bar-chart span{width:20px}
   .analytics-action-strip span,.analytics-action-strip a{border-right:0;border-bottom:1px solid #e5ecff}
+}
+
+@media(max-width:680px){
+  .copy h1.solution-title{font-size:28px;line-height:1.1}
+  .copy h1.solution-title .gradient{font-size:.82em}
 }
