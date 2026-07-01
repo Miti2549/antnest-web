@@ -106,4 +106,4 @@ assets/qr-ant-care-card-official.png
 - This deployment does not call paid APIs.
 - This deployment does not publish, broadcast, or mutate ads.
 - This deployment is frontend-only and can be rolled back by switching the hosting project back to the previous deployment.
-- App Login is not live yet. `/login.html` is a temporary bridge page. When the real app URL is ready, update `APP_LOGIN_URL` inside `login.html`.
+- App Login is not live yet. `/login.html` is a temporary bridge page. When the real app URL is ready, update `APP_LOGIN_URL` inside `login.html`; after the bridge video ends, it will continue to the real app login.

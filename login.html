@@ -55,7 +55,7 @@
           <div class="login-status">Freight Ai Agent is preparing your workspace.</div>
           <h1>เข้าสู่ <span class="gradient">Ants App</span></h1>
           <p>หน้านี้เป็นทางเข้าชั่วคราวระหว่างรอ App Login ตัวจริงขึ้น production เพื่อไม่ให้ปุ่ม Login วนกลับเว็บเดิมหลัง deploy</p>
-          <p>เมื่อระบบ App Login พร้อม Dev เปลี่ยน URL ในไฟล์นี้จุดเดียว แล้วปุ่มนี้จะพาเข้าสู่ระบบจริงทันที</p>
+          <p>เมื่อระบบ App Login พร้อม Dev เปลี่ยน URL ในไฟล์นี้จุดเดียว หลังวิดีโอจบระบบจะพาเข้าสู่ระบบจริงทันที</p>
 
           <div class="login-actions" id="login-actions">
             <a class="pill primary disabled" id="app-login-link" href="#" aria-disabled="true">App Login กำลังเตรียมเปิด</a>
@@ -71,17 +71,27 @@
   </div>
   <script>
     const APP_LOGIN_URL = "";
+    const AUTO_REDIRECT_TO_APP = true;
+    const REDIRECT_AFTER_VIDEO_MS = 650;
     const actions = document.getElementById("login-actions");
     const appLoginLink = document.getElementById("app-login-link");
     const video = document.getElementById("login-video");
+    let revealed = false;
 
     function revealLoginAction() {
+      if (revealed) return;
+      revealed = true;
       actions.classList.add("ready");
       if (APP_LOGIN_URL) {
         appLoginLink.href = APP_LOGIN_URL;
         appLoginLink.classList.remove("disabled");
         appLoginLink.removeAttribute("aria-disabled");
         appLoginLink.textContent = "เข้าสู่ App Login";
+        if (AUTO_REDIRECT_TO_APP) {
+          window.setTimeout(() => {
+            window.location.href = APP_LOGIN_URL;
+          }, REDIRECT_AFTER_VIDEO_MS);
+        }
       }
     }
 
